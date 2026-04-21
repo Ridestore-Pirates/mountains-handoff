@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mountains — Sign Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<style>
+
+/* ── Top gradient overlay (200px, mix-blend-overlay) ── */
+.bg-overlay {
+  height: 200px;
+  background: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+  mix-blend-mode: overlay;
+}
+
+/* ── Status bar ── */
+.status-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  height: 44px;
+  padding: 13px 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.status-time {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.2px;
+}
+.status-icons { display: flex; align-items: center; gap: 6px; }
+
+/* ── Logo (on photo) ── */
+.logo-lockup {
+  position: absolute;
+  top: 98px;
+  left: 59px;
+  width: 275px;
+  height: 48px;
+  z-index: 10;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* ── Tagline ── */
+.tagline {
+  position: absolute;
+  top: 173px;
+  left: 20px;
+  right: 20px;
+  z-index: 10;
+  font-size: 16px;       /* body-md */
+  font-weight: 400;
+  color: var(--color-text);  /* #080808 */
+  line-height: 1.25;
+  text-align: center;
+}
+
+/* ── Signup card ── */
+.card {
+  position: absolute;
+  top: 365px;
+  left: 20px;
+  width: 353px;
+  bottom: 0;
+  background: var(--surface-blur);   /* rgba(213,244,252,0.8) */
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: 32px 32px 0 0;
+  z-index: 10;
+  padding: 25px 20px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Card title ── */
+.card-title {
+  font-size: 20px;       /* heading-lg */
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.25;
+  text-align: center;
+  margin-bottom: 13px;
+}
+
+/* ── Form fields ── */
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-wrap input {
+  width: 100%;
+  height: 40px;
+  background: var(--color-surface-muted);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: var(--radius-sm);
+  border: none;
+  padding: 0 40px 0 16px;
+  font-family: var(--font);
+  font-size: 16px;       /* body-md */
+  font-weight: 400;
+  color: var(--color-text);
+  outline: none;
+}
+.input-wrap input::placeholder {
+  color: var(--color-text-muted);
+}
+.input-icon {
+  position: absolute;
+  right: 12px;
+  color: var(--color-icon-bg);   /* #4E93AD */
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+.input-icon .iconify {
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Sign Up button ── */
+.btn-signup {
+  width: 100%;
+  height: 40px;
+  background: var(--color-text);       /* #080808 */
+  color: var(--color-text-on-dark);    /* #D5F4FC */
+  font-family: var(--font);
+  font-size: 16px;                     /* cta-lg */
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+/* ── Divider ── */
+.divider-label {
+  font-size: 12px;       /* body-sm */
+  font-weight: 400;
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* ── Social buttons ── */
+.social-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.btn-social {
+  flex: 1;
+  height: 44px;
+  background: var(--color-surface-muted);   /* #BBE2EC */
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-social {
+  overflow: hidden;
+}
+.btn-social img {
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+  max-width: 100%;
+}
+.btn-social.google img { width: 68px; height: 22px; }
+.btn-social.apple  img { width: 20px; height: 24px; }
+
+/* ── T&C row ── */
+.tc-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  border: 3px solid var(--color-surface-muted);
+  background: white;
+  flex-shrink: 0;
+  margin-top: 1px;
+  cursor: pointer;
+}
+.tc-text {
+  font-size: 12px;       /* legal-sm */
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+.tc-text a {
+  color: var(--color-error-link);   /* #EA4335 */
+  text-decoration: none;
+}
+
+/* ── Log In link ── */
+.login-row {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-text);
+  text-align: center;
+  line-height: 1.25;
+}
+.login-row a {
+  color: var(--color-link);   /* #E04700 */
+  text-decoration: none;
+}
+
+</style>
+</head>
+<body class="mountains-canvas">
+
+<div class="device">
+  <div class="screen">
+
+    <!-- Background photo -->
+    <div class="bg" style="background-image: url('/assets/images/bg-signup.jpg');"></div>
+    <div class="bg-overlay"></div>
+
+    <!-- Status bar -->
+    <div class="status-bar">
+      <span class="status-time">9:41</span>
+      <div class="status-icons">
+        <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
+          <rect x="0"    y="7"   width="3" height="5"    rx="1" fill="#080808"/>
+          <rect x="4.5"  y="4.5" width="3" height="7.5"  rx="1" fill="#080808"/>
+          <rect x="9"    y="2"   width="3" height="10"   rx="1" fill="#080808"/>
+          <rect x="13.5" y="0"   width="3" height="12"   rx="1" fill="#080808"/>
+        </svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+          <circle cx="8" cy="11" r="1.2" fill="#080808"/>
+          <path d="M5 8.2C6 7.2 7 6.8 8 6.8s2 .4 3 1.4" stroke="#080808" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M2.5 5.4C4.2 3.7 6 2.8 8 2.8s3.8.9 5.5 2.6" stroke="#080808" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+        <svg width="26" height="12" viewBox="0 0 26 12" fill="none">
+          <rect x="0.5" y="0.5" width="22" height="11" rx="3.5" stroke="#080808" stroke-opacity="0.4"/>
+          <rect x="2" y="2" width="17" height="8" rx="2" fill="#080808"/>
+          <path d="M24 4.5v3a1.5 1.5 0 0 0 0-3z" fill="#080808" fill-opacity="0.45"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Logo -->
+    <img class="logo-lockup" src="/assets/logo/mountains-logo-dark.svg" alt="Mountains">
+
+    <!-- Tagline -->
+    <p class="tagline">Your mountain companion — track your speed, distance, routes, and vertical drops in real time.</p>
+
+    <!-- Sign Up card -->
+    <div class="card">
+
+      <div class="card-title">Sign Up</div>
+
+      <!-- Inputs -->
+      <div class="form-stack">
+        <div class="input-wrap">
+          <input type="email" placeholder="Email adress">
+          <span class="input-icon">
+            <span class="iconify" data-icon="fluent:mail-24-filled"></span>
+          </span>
+        </div>
+        <div class="input-wrap">
+          <input type="password" placeholder="Password">
+          <span class="input-icon">
+            <span class="iconify" data-icon="fluent:eye-24-filled"></span>
+          </span>
+        </div>
+        <div class="input-wrap">
+          <input type="password" placeholder="Confirm Password">
+          <span class="input-icon">
+            <span class="iconify" data-icon="fluent:eye-24-filled"></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <button class="btn-signup">Sign Up</button>
+
+      <!-- Divider -->
+      <div class="divider-label">Or Log In with</div>
+
+      <!-- Social -->
+      <div class="social-row">
+        <button class="btn-social google">
+          <img src="/assets/icons/google-logo.svg" alt="Google">
+        </button>
+        <button class="btn-social apple">
+          <img src="/assets/icons/apple-logo.svg" alt="Apple">
+        </button>
+      </div>
+
+      <!-- T&C -->
+      <div class="tc-row">
+        <div class="checkbox"></div>
+        <p class="tc-text">I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></p>
+      </div>
+
+      <!-- Log In -->
+      <div class="login-row">Already have an account? <a href="#">Log In</a></div>
+
+    </div><!-- /card -->
+
+  </div><!-- /screen -->
+</div><!-- /device -->
+
+<p class="page-label">Mountains · Sign Up · Screen 1</p>
+
+</body>
+</html>

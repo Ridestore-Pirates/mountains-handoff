@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mountains — Scoring System</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<style>
+
+/* ── Dark overlay ── */
+.dark-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(19,41,50,0.7);
+  z-index: 2;
+}
+
+/* ── Status bar (light text on dark) ── */
+.status-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  height: 44px;
+  padding: 13px 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Logo ── */
+.scoring-logo {
+  position: absolute;
+  left: 20px;
+  top: 55px;
+  width: 140px;
+  height: 25px;
+  z-index: 10;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* ── Location pill (compact, left-aligned) ── */
+.scoring-pill {
+  position: absolute;
+  left: 55px;
+  top: 92px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 8px;
+  background: var(--surface-blur);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: 28px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.scoring-pill img { width: 12px; height: auto; }
+
+/* ── Card ── */
+.card {
+  position: absolute;
+  left: 20px;
+  top: 148px;
+  width: 353px;
+  height: 559px;
+  background: var(--color-surface);   /* #D5F4FC */
+  border-radius: 8px;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* ── Scroll indicator ── */
+.scroll-indicator {
+  position: absolute;
+  right: 4px;
+  top: 100px;
+  width: 4px;
+  height: 160px;
+  background: rgba(78,147,173,0.7);
+  border-radius: 2px;
+  z-index: 10;
+}
+
+/* ── Card header ── */
+.card-header {
+  padding: 20px 20px 12px;
+  background: var(--color-surface);
+  box-shadow: 0 4px 16px rgba(8,8,8,0);
+  transition: box-shadow 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+.card-header.scrolled {
+  box-shadow: 0 4px 16px rgba(8,8,8,0.1);
+}
+.card-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.25;
+  margin-bottom: 4px;
+  text-align: center;
+}
+.card-subheading {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(8,8,8,0.5);
+  text-align: center;
+  line-height: 1.25;
+}
+
+/* ── Stats list (scrollable) ── */
+.stats-list {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  height: calc(100% - 80px);  /* card height minus header */
+  padding-bottom: 8px;
+}
+.stats-list::-webkit-scrollbar { display: none; }
+
+/* ── Stat row ── */
+.stat-row {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  min-height: 64px;
+  background: var(--color-surface-muted);  /* #BBE2EC */
+  border-radius: 8px;
+  padding: 12px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.stat-row.featured {
+  background: var(--color-primary);   /* #E04700 */
+}
+
+/* ── Icon box ── */
+.stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stat-icon.teal { background: var(--color-icon-bg); }   /* #4E93AD */
+.stat-icon.light { background: var(--color-surface-muted); }  /* #BBE2EC */
+.stat-icon img.full { width: 100%; height: 100%; object-fit: cover; }
+.stat-icon img.sm  { width: 22px; height: 22px; }
+
+/* ── Stat text ── */
+.stat-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.stat-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.25;
+}
+.stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.25;
+}
+.stat-row.featured .stat-label,
+.stat-row.featured .stat-value {
+  color: var(--color-text-on-dark);  /* #D5F4FC */
+}
+
+/* ── View button ── */
+.btn-view {
+  width: 90px;
+  height: 40px;
+  background: var(--color-text);         /* #080808 */
+  color: var(--color-text-on-dark);      /* #D5F4FC */
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ── Close button ── */
+.btn-close {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 766px;
+  width: 194px;
+  height: 46px;
+  background: var(--color-surface);      /* #D5F4FC */
+  border-radius: 8px;
+  border: none;
+  font-family: var(--font);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text);
+  cursor: pointer;
+  z-index: 10;
+}
+
+</style>
+</head>
+<body class="mountains-canvas">
+
+<div class="device">
+  <div class="screen">
+
+    <!-- Background + dark overlay -->
+    <div class="bg" style="background-image: url('/assets/images/bg-map.jpg'); background-position: center center;"></div>
+    <div class="dark-overlay"></div>
+
+    <!-- Status bar -->
+    <div class="status-bar">
+      <span class="status-time" style="color:var(--color-text-on-dark);">9:41</span>
+      <div class="status-icons">
+        <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
+          <rect x="0"    y="7"   width="3" height="5"    rx="1" fill="#D5F4FC"/>
+          <rect x="4.5"  y="4.5" width="3" height="7.5"  rx="1" fill="#D5F4FC"/>
+          <rect x="9"    y="2"   width="3" height="10"   rx="1" fill="#D5F4FC"/>
+          <rect x="13.5" y="0"   width="3" height="12"   rx="1" fill="#D5F4FC"/>
+        </svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+          <circle cx="8" cy="11" r="1.2" fill="#D5F4FC"/>
+          <path d="M5 8.2C6 7.2 7 6.8 8 6.8s2 .4 3 1.4" stroke="#D5F4FC" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M2.5 5.4C4.2 3.7 6 2.8 8 2.8s3.8.9 5.5 2.6" stroke="#D5F4FC" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+        <svg width="26" height="12" viewBox="0 0 26 12" fill="none">
+          <rect x="0.5" y="0.5" width="22" height="11" rx="3.5" stroke="#D5F4FC" stroke-opacity="0.4"/>
+          <rect x="2" y="2" width="17" height="8" rx="2" fill="#D5F4FC"/>
+          <path d="M24 4.5v3a1.5 1.5 0 0 0 0-3z" fill="#D5F4FC" fill-opacity="0.45"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Logo -->
+    <img class="scoring-logo" src="/assets/logo/mountains-logo.svg" alt="Mountains">
+
+    <!-- Location pill -->
+    <button class="scoring-pill">
+      <span>Verbier</span>
+      <img src="/assets/icons/dropdown-arrow.svg" alt="">
+    </button>
+
+    <!-- Main card -->
+    <div class="card">
+
+      <div class="card-header">
+        <p class="card-heading">Days on Mountains at Verbier</p>
+        <p class="card-subheading">First Recording 02/03/2024</p>
+      </div>
+
+      <div class="stats-list">
+
+        <!-- Season Score (featured, orange) -->
+        <div class="stat-row featured">
+          <div class="stat-icon light">
+            <img class="full" src="/assets/icons/scoring-season.png" alt="">
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Season Score</span>
+            <span class="stat-value">740 pts</span>
+          </div>
+          <button class="btn-view">View</button>
+        </div>
+
+        <!-- Top Speed -->
+        <div class="stat-row">
+          <div class="stat-icon">
+            <img class="full" src="/assets/icons/scoring-speed.svg" alt="">
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Top Speed</span>
+            <span class="stat-value">76.0 km/h</span>
+          </div>
+          <button class="btn-view">View</button>
+        </div>
+
+        <!-- Resort Explored -->
+        <div class="stat-row">
+          <div class="stat-icon">
+            <img class="full" src="/assets/icons/scoring-resort.svg" alt="">
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Resort Explored</span>
+            <span class="stat-value">44%</span>
+          </div>
+          <button class="btn-view">View</button>
+        </div>
+
+        <!-- Total Days Riding -->
+        <div class="stat-row">
+          <div class="stat-icon teal">
+            <img class="sm" src="/assets/icons/scoring-days.svg" alt="">
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Total Days Riding</span>
+            <span class="stat-value">17 days</span>
+          </div>
+        </div>
+
+        <!-- Total Runs -->
+        <div class="stat-row">
+          <div class="stat-icon">
+            <img class="full" src="/assets/icons/scoring-runs.svg" alt="">
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Total Runs</span>
+            <span class="stat-value">64</span>
+          </div>
+          <button class="btn-view">View</button>
+        </div>
+
+        <!-- On Piste -->
+        <div class="stat-row">
+          <div class="stat-icon teal">
+            <img class="sm" src="/assets/icons/scoring-piste.svg" alt="">
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">On Piste</span>
+            <span class="stat-value">74%</span>
+          </div>
+          <button class="btn-view">View</button>
+        </div>
+
+        <!-- Time on Mountain -->
+        <div class="stat-row">
+          <div class="stat-icon">
+            <img class="full" src="/assets/icons/scoring-time.svg" alt="">
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Time on Mountain</span>
+            <span class="stat-value">22h 35m</span>
+          </div>
+          <button class="btn-view">View</button>
+        </div>
+
+      </div><!-- /stats-list -->
+
+      <!-- Scroll indicator -->
+      <div class="scroll-indicator"></div>
+
+    </div><!-- /card -->
+
+    <!-- Close button -->
+    <button class="btn-close">Close</button>
+
+    <!-- Bottom strip -->
+    <div class="bottom-strip" style="z-index:10;">
+      <div class="home-indicator"></div>
+    </div>
+
+  </div><!-- /screen -->
+</div><!-- /device -->
+
+<p class="page-label">Mountains · Scoring System · Screen 5</p>
+
+<script>
+  const list = document.querySelector('.stats-list');
+  const header = document.querySelector('.card-header');
+  list.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', list.scrollTop > 0);
+  });
+</script>
+</body>
+</html>

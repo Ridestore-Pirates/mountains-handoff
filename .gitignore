@@ -1,0 +1,14 @@
+# Claude Code — user-specific permissions, not needed by others
+.claude/settings.local.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.suo
+*.user
+
+# Dependencies
+node_modules/

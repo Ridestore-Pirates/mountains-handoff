@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mountains — Developer Handoff</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#E04700;
+  --surface:#D5F4FC;
+  --muted:#BBE2EC;
+  --teal:#4E93AD;
+  --dark:#080808;
+  --bg:#0c0c0c;
+  --card:#1a1a1a;
+  --border:rgba(255,255,255,0.07);
+  --text:#f0f0f0;
+  --dim:rgba(240,240,240,0.45);
+  --font:'Archivo Expanded',sans-serif;
+  --mono:'SF Mono','Fira Code',monospace;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);background:var(--bg);color:var(--text);
+  min-height:100vh;display:flex;flex-direction:column;
+}
+
+/* ── HEADER ── */
+header{
+  border-bottom:1px solid var(--border);
+  padding:28px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.header-logo{display:flex;align-items:center;gap:16px}
+.header-logo img{height:22px}
+.header-badge{
+  font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  padding:3px 8px;border-radius:4px;
+  background:rgba(224,71,0,0.15);color:var(--orange);
+}
+.header-links{display:flex;gap:24px}
+.header-links a{
+  font-size:12px;font-weight:700;color:var(--dim);text-decoration:none;
+  transition:color 0.15s;
+}
+.header-links a:hover{color:var(--text)}
+
+/* ── HERO ── */
+.hero{
+  padding:72px 48px 64px;
+  border-bottom:1px solid var(--border);
+  max-width:800px;
+}
+.hero-eyebrow{
+  font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:16px;
+}
+.hero-title{
+  font-size:40px;font-weight:700;color:var(--text);
+  line-height:1.15;margin-bottom:20px;
+}
+.hero-title span{color:var(--orange)}
+.hero-desc{font-size:14px;color:var(--dim);line-height:1.75;max-width:560px}
+
+/* ── MAIN GRID ── */
+.main{
+  flex:1;display:grid;
+  grid-template-columns:1fr 320px;
+  gap:0;
+  border-bottom:1px solid var(--border);
+}
+.primary{padding:48px;border-right:1px solid var(--border)}
+.sidebar{padding:40px 32px}
+
+/* ── SECTION ── */
+.section{margin-bottom:56px}
+.section-label{
+  font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(240,240,240,0.25);margin-bottom:20px;
+}
+.section-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px}
+.section-desc{font-size:12px;color:var(--dim);line-height:1.7;margin-bottom:24px}
+
+/* ── PRIMARY CTA CARDS ── */
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.cta-card{
+  display:block;text-decoration:none;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:24px;
+  transition:border-color 0.15s,background 0.15s;
+}
+.cta-card:hover{border-color:var(--orange);background:#1f1f1f}
+.cta-card.full{grid-column:1/-1}
+.cta-icon{
+  width:36px;height:36px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;
+}
+.cta-icon.orange{background:rgba(224,71,0,0.2)}
+.cta-icon.teal{background:rgba(78,147,173,0.2)}
+.cta-icon.muted{background:rgba(240,240,240,0.08)}
+.cta-icon svg{width:18px;height:18px}
+.cta-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px}
+.cta-desc{font-size:11px;color:var(--dim);line-height:1.6}
+.cta-arrow{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:10px;font-weight:700;color:var(--orange);
+  margin-top:12px;text-decoration:none;
+}
+
+/* ── SCREEN TABLE ── */
+.screen-table{width:100%;border-collapse:collapse}
+.screen-table th{
+  font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(240,240,240,0.25);padding:0 12px 10px 0;text-align:left;
+  border-bottom:1px solid var(--border);
+}
+.screen-table td{
+  padding:12px 12px 12px 0;font-size:12px;color:var(--text);
+  border-bottom:1px solid var(--border);vertical-align:middle;
+}
+.screen-table tr:last-child td{border-bottom:none}
+.screen-table a{color:var(--text);text-decoration:none;font-weight:700}
+.screen-table a:hover{color:var(--orange)}
+.screen-node{font-size:10px;color:var(--dim);font-family:var(--mono);display:block;margin-top:2px}
+.badge{
+  display:inline-block;font-size:8px;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  padding:2px 6px;border-radius:3px;white-space:nowrap;
+}
+.badge.stable{background:rgba(78,147,173,0.2);color:var(--teal)}
+.badge.in-progress{background:rgba(224,71,0,0.15);color:var(--orange)}
+
+/* ── CODE BLOCK ── */
+.code-block{
+  background:#0d1117;border:1px solid var(--border);
+  border-radius:8px;padding:16px 20px;
+  font-family:var(--mono);font-size:11px;color:#a5b4c3;
+  line-height:1.8;overflow-x:auto;
+}
+.code-block .cm{color:#8b949e}
+.code-block .val{color:#e3b341}
+.code-block .kw{color:#7ee787}
+
+/* ── SIDEBAR ITEMS ── */
+.sidebar-section{margin-bottom:40px}
+.sidebar-label{
+  font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(240,240,240,0.25);margin-bottom:16px;
+}
+
+/* ── STACK ── */
+.stack-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.stack-item{display:flex;align-items:flex-start;gap:10px;font-size:11px;color:var(--dim);line-height:1.5}
+.stack-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:4px}
+.stack-item strong{color:var(--text)}
+
+/* ── TODO LIST ── */
+.todo-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.todo-item{
+  padding:10px 12px;border-radius:6px;
+  font-size:11px;color:var(--dim);line-height:1.5;
+  border-left:2px solid;
+}
+.todo-item.red{background:rgba(224,71,0,0.08);border-color:var(--orange);color:#ccc}
+.todo-item.yellow{background:rgba(245,196,0,0.06);border-color:#f5c400;color:#ccc}
+.todo-item strong{color:var(--text);display:block;margin-bottom:2px}
+
+/* ── FOLDER TREE ── */
+.tree{
+  font-family:var(--mono);font-size:11px;color:var(--dim);
+  line-height:1.9;
+}
+.tree .dir{color:var(--text);font-weight:700}
+.tree .file{color:var(--dim)}
+.tree .note{color:rgba(240,240,240,0.2);font-size:10px}
+
+/* ── FOOTER ── */
+footer{
+  padding:24px 48px;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+}
+.footer-note{font-size:10px;color:var(--dim)}
+.footer-note a{color:var(--orange);text-decoration:none}
+
+@media(max-width:900px){
+  .main{grid-template-columns:1fr}
+  .primary{border-right:none;border-bottom:1px solid var(--border)}
+  .cta-grid{grid-template-columns:1fr}
+  .cta-card.full{grid-column:auto}
+  header,footer,.hero,.primary,.sidebar{padding-left:24px;padding-right:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-logo">
+    <img src="/assets/logo/mountains-logo.svg" alt="Mountains">
+    <span class="header-badge">Developer Handoff</span>
+  </div>
+  <nav class="header-links">
+    <a href="/docs/design-system.html">Design System</a>
+    <a href="/docs/design.md">design.md</a>
+    <a href="#screens">Screens</a>
+    <a href="#run-locally">Run Locally</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Mountains App · iOS Design System</p>
+  <h1 class="hero-title">Everything a developer<br>needs, <span>no Figma required.</span></h1>
+  <p class="hero-desc">This repo is the source of truth for the Mountains design system — tokens, components, screen mockups, and assets. All screens are built as static HTML/CSS using the 4px grid. No framework, no build step.</p>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+<div class="primary">
+
+  <!-- PRIMARY LINKS -->
+  <div class="section">
+    <p class="section-label">Start here</p>
+    <div class="cta-grid">
+      <a href="/docs/design-system.html" class="cta-card">
+        <div class="cta-icon orange">
+          <svg viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="6" height="6" rx="1.5" fill="#E04700"/><rect x="11" y="1" width="6" height="6" rx="1.5" fill="#E04700" opacity=".5"/><rect x="1" y="11" width="6" height="6" rx="1.5" fill="#E04700" opacity=".5"/><rect x="11" y="11" width="6" height="6" rx="1.5" fill="#E04700" opacity=".3"/></svg>
+        </div>
+        <div class="cta-name">Design System</div>
+        <div class="cta-desc">Interactive reference — colors, typography, spacing, every component with live previews and copyable CSS.</div>
+        <span class="cta-arrow">Open →</span>
+      </a>
+      <a href="/docs/design.md" class="cta-card">
+        <div class="cta-icon teal">
+          <svg viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="2" rx="1" fill="#4E93AD"/><rect x="2" y="6" width="10" height="2" rx="1" fill="#4E93AD" opacity=".6"/><rect x="2" y="10" width="12" height="2" rx="1" fill="#4E93AD" opacity=".6"/><rect x="2" y="14" width="8" height="2" rx="1" fill="#4E93AD" opacity=".4"/></svg>
+        </div>
+        <div class="cta-name">design.md</div>
+        <div class="cta-desc">The single source of truth. All tokens, components, and rules defined in plain Markdown.</div>
+        <span class="cta-arrow">Open →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- SCREENS -->
+  <div class="section" id="screens">
+    <p class="section-label">Screen mockups</p>
+    <h2 class="section-title">Built Screens</h2>
+    <p class="section-desc">All screens are 393×852px (iPhone standard) and run in any browser. Open via the preview server or click the links below.</p>
+
+    <table class="screen-table">
+      <thead>
+        <tr>
+          <th>Screen</th>
+          <th>Figma node</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="/docs/screen-signup.html">Sign Up</a><span class="screen-node">screen-signup.html</span></td>
+          <td><span style="font-family:var(--mono);font-size:10px;color:var(--dim)">124:1791</span></td>
+          <td><span class="badge stable">Stable</span></td>
+        </tr>
+        <tr>
+          <td><a href="/docs/screen-power-saving.html">Power Saving Warning</a><span class="screen-node">screen-power-saving.html</span></td>
+          <td><span style="font-family:var(--mono);font-size:10px;color:var(--dim)">124:1671</span></td>
+          <td><span class="badge stable">Stable</span></td>
+        </tr>
+        <tr>
+          <td><a href="/docs/screen-top-speed.html">Top Speed</a><span class="screen-node">screen-top-speed.html</span></td>
+          <td><span style="font-family:var(--mono);font-size:10px;color:var(--dim)">125:2082</span></td>
+          <td><span class="badge stable">Stable</span></td>
+        </tr>
+        <tr>
+          <td><a href="/docs/screen-scoring.html">Scoring System</a><span class="screen-node">screen-scoring.html</span></td>
+          <td><span style="font-family:var(--mono);font-size:10px;color:var(--dim)">125:2500</span></td>
+          <td><span class="badge stable">Stable</span></td>
+        </tr>
+        <tr>
+          <td><a href="/docs/screen-crowns.html">Crowns Hub</a><span class="screen-node">screen-crowns.html</span></td>
+          <td><span style="font-family:var(--mono);font-size:10px;color:var(--dim)">125:2607</span></td>
+          <td><span class="badge stable">Stable</span></td>
+        </tr>
+        <tr>
+          <td><a href="/docs/screen-profile.html">Profile</a><span class="screen-node">screen-profile.html</span></td>
+          <td><span style="font-family:var(--mono);font-size:10px;color:var(--dim)">178:1942</span></td>
+          <td><span class="badge stable">Stable</span></td>
+        </tr>
+        <tr>
+          <td><a href="/docs/screen-notifications.html">Notifications</a><span class="screen-node">screen-notifications.html</span></td>
+          <td><span style="font-family:var(--mono);font-size:10px;color:var(--dim)">—</span></td>
+          <td><span class="badge stable">Stable</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RUN LOCALLY -->
+  <div class="section" id="run-locally">
+    <p class="section-label">Setup</p>
+    <h2 class="section-title">Run Locally</h2>
+    <p class="section-desc">No install needed. Requires Node.js. Serve from the project root so all <code style="font-family:var(--mono);font-size:11px;color:var(--orange)">/assets/</code> paths resolve correctly.</p>
+    <div class="code-block"><span class="cm"># Clone the repo</span>
+git clone https://github.com/{username}/{repo}.git
+cd {repo}
+
+<span class="cm"># Start the preview server (port 4321)</span>
+npx serve . -p 4321
+
+<span class="cm"># Open in browser</span>
+<span class="val">http://localhost:4321</span>          <span class="cm">← this page</span>
+<span class="val">http://localhost:4321/docs/design-system.html</span></div>
+    <p style="font-size:11px;color:var(--dim);margin-top:12px;line-height:1.6">The dev server config is already in <code style="font-family:var(--mono);color:var(--orange)">.claude/launch.json</code> — Claude Code users can start it with <strong style="color:var(--text)">preview_start</strong> from within a session.</p>
+  </div>
+
+  <!-- ASSET STRUCTURE -->
+  <div class="section">
+    <p class="section-label">Assets</p>
+    <h2 class="section-title">Folder Structure</h2>
+    <p class="section-desc">All asset paths are root-relative — use exactly as shown. Full asset reference with previews is in the <a href="/docs/design-system.html#assets" style="color:var(--orange)">Design System → Assets</a> section.</p>
+    <div class="tree">
+      <div><span class="dir">assets/</span></div>
+      <div>&nbsp;&nbsp;<span class="dir">css/</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">tokens.css</span> &nbsp;<span class="note">← all CSS custom properties</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">components.css</span> &nbsp;<span class="note">← shared component classes</span></div>
+      <div>&nbsp;&nbsp;<span class="dir">logo/</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">mountains-logo.svg</span> &nbsp;<span class="note">← light (on dark bg)</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">mountains-logo-dark.svg</span> &nbsp;<span class="note">← dark (on light bg)</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">mountains-icon.svg</span> &nbsp;<span class="note">← icon only, 48×48</span></div>
+      <div>&nbsp;&nbsp;<span class="dir">icons/</span> &nbsp;<span class="note">← 30+ SVG/PNG icons</span></div>
+      <div>&nbsp;&nbsp;<span class="dir">images/</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">bg-map.jpg</span> &nbsp;<span class="note">← map/crowns/notifications bg (1.6MB)</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">bg-signup.jpg</span> &nbsp;<span class="note">← sign up bg (1.4MB)</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">bg-profile.jpg</span> &nbsp;<span class="note">← profile bg (1.6MB)</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">bg-top-speed.png</span> &nbsp;<span class="note">← stat screens bg (9.6MB) ⚠ large</span></div>
+    </div>
+  </div>
+
+</div><!-- /primary -->
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <!-- STACK -->
+  <div class="sidebar-section">
+    <p class="sidebar-label">Stack</p>
+    <ul class="stack-list">
+      <li class="stack-item"><span class="stack-dot"></span><div><strong>HTML / CSS</strong> — no framework, no build step</div></li>
+      <li class="stack-item"><span class="stack-dot"></span><div><strong>Archivo Expanded</strong> — Google Fonts, 400 &amp; 700 only</div></li>
+      <li class="stack-item"><span class="stack-dot"></span><div><strong>Fluent UI Icons</strong> — via Iconify CDN (<code style="font-family:var(--mono);font-size:10px">fluent:{name}-24-filled</code>)</div></li>
+      <li class="stack-item"><span class="stack-dot"></span><div><strong>4px grid</strong> — every size and spacing is a multiple of 4</div></li>
+      <li class="stack-item"><span class="stack-dot"></span><div><strong>Figma MCP</strong> — Claude Code integration for asset export</div></li>
+    </ul>
+  </div>
+
+  <!-- ACTIVE TODOS -->
+  <div class="sidebar-section">
+    <p class="sidebar-label">Active TODOs</p>
+    <ul class="todo-list">
+      <li class="todo-item red">
+        <strong>🔴 Button size system</strong>
+        View: 90×40px · Close: 194×48px · all labels 16px bold. Currently inconsistent across screens.
+      </li>
+      <li class="todo-item yellow">
+        <strong>Map View screen</strong>
+        screen-map.html not yet built (node: 124:1563). Linked in design system as planned.
+      </li>
+      <li class="todo-item yellow">
+        <strong>Stat detail screens 2–7</strong>
+        Resort %, Total Runs, On Piste, Time, Streak, Avg Speed — not yet built.
+      </li>
+      <li class="todo-item yellow">
+        <strong>Figma fractional positions</strong>
+        Several layers have sub-pixel X/Y values — need snapping to 4px grid in Figma.
+      </li>
+    </ul>
+    <a href="/docs/figma_todo.md" style="display:inline-block;margin-top:12px;font-size:10px;font-weight:700;color:var(--teal);text-decoration:none">Full todo list →</a>
+  </div>
+
+  <!-- BRANCHING -->
+  <div class="sidebar-section">
+    <p class="sidebar-label">Branching</p>
+    <div class="code-block" style="font-size:10px">main
+│
+<span class="kw">├──</span> feature/screen-{name}
+<span class="kw">├──</span> feature/tokens-{change}
+<span class="kw">└──</span> fix/{description}</div>
+    <p style="font-size:10px;color:var(--dim);margin-top:10px;line-height:1.6"><code style="font-family:var(--mono)">main</code> is always deployable. Only merge when a screen is complete and reviewed.</p>
+  </div>
+
+  <!-- RULES -->
+  <div class="sidebar-section">
+    <p class="sidebar-label">Key Rules</p>
+    <ul class="stack-list">
+      <li class="stack-item"><span class="stack-dot" style="background:var(--orange)"></span><div>All spacing/sizing = multiples of 4</div></li>
+      <li class="stack-item"><span class="stack-dot" style="background:var(--orange)"></span><div>Text on dark bg = solid tokens only, never rgba</div></li>
+      <li class="stack-item"><span class="stack-dot" style="background:var(--orange)"></span><div>Icons always <code style="font-family:var(--mono);font-size:10px">#D5F4FC</code>, never white</div></li>
+      <li class="stack-item"><span class="stack-dot" style="background:var(--orange)"></span><div>No tab bar — nav lives in the header</div></li>
+      <li class="stack-item"><span class="stack-dot" style="background:var(--orange)"></span><div>Type sizes: 38, 20, 18, 17, 16, 12, 10px only</div></li>
+    </ul>
+    <a href="/docs/design-system.html#rules" style="display:inline-block;margin-top:12px;font-size:10px;font-weight:700;color:var(--teal);text-decoration:none">All rules →</a>
+  </div>
+
+</div><!-- /sidebar -->
+</div><!-- /main -->
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-note">Mountains Design System · Static HTML/CSS · <a href="/docs/design.md">design.md</a> is the source of truth</span>
+  <span class="footer-note">Run locally: <code style="font-family:var(--mono)">npx serve . -p 4321</code></span>
+</footer>
+
+</body>
+</html>

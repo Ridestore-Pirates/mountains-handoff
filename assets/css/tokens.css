@@ -1,0 +1,99 @@
+/**
+ * Mountains Design System — Tokens
+ * Single source of truth for all CSS custom properties.
+ * All values derived from docs/design.md.
+ * 4px grid rule: all spacing is a multiple of 4.
+ */
+
+:root {
+
+  /* ─────────────────────────────────────────
+   * COLOR
+   * ───────────────────────────────────────── */
+
+  --color-primary:        #E04700;          /* CTA, active states, accent */
+  --color-surface:        #D5F4FC;          /* Cards, frosted panels, Close btn */
+  --color-surface-muted:  #BBE2EC;          /* Inputs, secondary btns, stat rows */
+  --color-icon-bg:        #4E93AD;          /* Stat row icon button backgrounds */
+  --color-text:           #080808;          /* Headings, body */
+  --color-text-muted:     rgba(8,8,8,0.5); /* Subtitles, placeholders */
+  --color-text-on-dark:   #D5F4FC;          /* Text on dark photo backgrounds */
+  --color-link:           #E04700;          /* Inline links */
+  --color-error-link:     #EA4335;          /* Legal inline links */
+  --color-overlay-dark:   linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0));
+
+
+  /* ─────────────────────────────────────────
+   * SPACING  (4px base grid)
+   * ───────────────────────────────────────── */
+
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  28px;
+  --space-8:  32px;
+  --space-9:  36px;
+  --space-10: 40px;
+  --space-11: 44px;
+  --space-12: 48px;
+  --space-14: 56px;
+
+
+  /* ─────────────────────────────────────────
+   * TYPOGRAPHY
+   * ───────────────────────────────────────── */
+
+  --font:          'Archivo Expanded', sans-serif;
+
+  /* Sizes */
+  --fs-38:  38px;   /* display-xl  */
+  --fs-20:  20px;   /* heading-lg  */
+  --fs-18:  18px;   /* display-lg / heading-md */
+  --fs-16:  16px;   /* body-md / cta-lg */
+  --fs-17:  17px;   /* cta-md (needs standardising — see TODO) */
+  --fs-12:  12px;   /* body-sm / label-sm / legal-sm */
+  --fs-10:  10px;   /* label-xs / caption */
+
+  /* Line heights */
+  --lh-tight:  1.0;
+  --lh-body:   1.25;
+  --lh-legal:  1.6;
+
+  /* Weights */
+  --fw-regular: 400;
+  --fw-bold:    700;
+
+
+  /* ─────────────────────────────────────────
+   * BORDER RADIUS
+   * ───────────────────────────────────────── */
+
+  --radius-sm:  8px;          /* Buttons, inputs, cards, icon buttons */
+  --radius-md:  28px;         /* Pills, bottom nav */
+  --radius-lg:  48px;         /* Avatar badges, user markers */
+
+
+  /* ─────────────────────────────────────────
+   * EFFECTS
+   * ───────────────────────────────────────── */
+
+  --blur:          blur(7.5px);
+  --surface-blur:  rgba(213,244,252,0.8);   /* Frosted panel fill */
+
+
+  /* ─────────────────────────────────────────
+   * LAYOUT
+   * ───────────────────────────────────────── */
+
+  --screen-w:          393px;
+  --screen-h:          852px;
+  --screen-padding-h:  20px;   /* Outer horizontal padding */
+  --screen-padding-inner: 40px; /* Card content padding */
+  --header-h:          56px;
+  --status-bar-h:      44px;
+  --bottom-strip-h:    40px;
+
+}

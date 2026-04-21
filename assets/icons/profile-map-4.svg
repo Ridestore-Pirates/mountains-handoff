@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="xMidYMid meet" width="40" height="40" overflow="visible" style="display: block;" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 192">
+<foreignObject x="-15" y="-15" width="70" height="70"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(7.5px);clip-path:url(#bgblur_0_0_34_clip_path);height:100%;width:100%"></div></foreignObject><rect id="Rectangle 13" data-figma-bg-blur-radius="15" width="40" height="40" rx="8" fill="var(--fill-0, #D5F4FC)" fill-opacity="0.8"/>
+<path id="Vector" d="M12.6667 28.0007C12.2987 28.0007 12 27.7027 12 27.3341V14.6674C12 13.1967 13.196 12.0007 14.6667 12.0007H26.6653C27.732 11.9641 28.4013 13.3061 27.7307 14.1361L25.5727 17.0007L27.7307 19.8654C28.402 20.6954 27.7327 22.0374 26.6653 22.0007H13.3333V27.3341C13.3333 27.7027 13.0347 28.0007 12.6667 28.0007Z" fill="var(--fill-0, #4E93AD)"/>
+</g>
+<defs>
+<clipPath id="bgblur_0_0_34_clip_path" transform="translate(15 15)"><rect width="40" height="40" rx="8"/>
+</clipPath></defs>
+</svg>

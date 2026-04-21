@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mountains — Crowns Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<style>
+
+/* ── Dark overlay ── */
+.dark-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(19,41,50,0.7);
+  z-index: 2;
+}
+
+/* ── Logo ── */
+.crowns-logo {
+  position: absolute;
+  left: 20px;
+  top: 55px;
+  width: 140px;
+  height: 25px;
+  z-index: 10;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* ── Location pill ── */
+.crowns-pill {
+  position: absolute;
+  left: 55px;
+  top: 92px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 8px;
+  background: var(--surface-blur);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: 28px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.crowns-pill img { width: 12px; height: auto; }
+
+/* ── Header nav icons (top right) ── */
+.nav-icons {
+  position: absolute;
+  top: 55px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  gap: 16px;
+}
+.nav-btn {
+  width: 40px;
+  height: 40px;
+  background: var(--surface-blur);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.nav-btn img.icon-sm { width: 18px; height: 18px; }
+.nav-btn img.icon-full {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+}
+.nav-btn img.avatar-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* ── Scrollable content ── */
+.content {
+  position: absolute;
+  top: 148px;
+  left: 20px;
+  right: 20px;
+  bottom: 40px;
+  z-index: 10;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+.content::-webkit-scrollbar { display: none; }
+
+/* ── Hero card ── */
+.hero-card {
+  background: var(--color-primary);  /* #E04700 */
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+.hero-subtitle {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(213,244,252,0.7);
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.hero-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-on-dark);
+  text-align: center;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+/* Medal floats directly on orange — no bg box */
+.hero-medal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.hero-medal img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+
+/* ── Progress section ── */
+.progress-section {
+  width: 100%;
+}
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+.progress-current {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-on-dark);
+  line-height: 1;
+}
+.progress-current span {
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 2px;
+}
+.progress-target {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(213,244,252,0.6);
+}
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(213,244,252,0.35);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: var(--color-text-on-dark);  /* #D5F4FC — harmonises with orange */
+  border-radius: 20px;
+}
+.progress-hint {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(213,244,252,0.7);
+  text-align: center;
+}
+
+/* ── Distribution card ── */
+.dist-card {
+  background: var(--color-surface);  /* #D5F4FC */
+  border-radius: 8px;
+  padding: 16px 20px;
+  flex-shrink: 0;
+}
+.dist-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  text-align: center;
+}
+.dist-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Distribution stat row ── */
+.dist-row {
+  background: var(--color-surface-muted);  /* #BBE2EC */
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.dist-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.dist-icon img { width: 100%; height: 100%; object-fit: cover; }
+.dist-info { flex: 1; min-width: 0; }
+.dist-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+.dist-value-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+.dist-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.dist-pct {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-icon-bg);  /* #4E93AD — teal, readable & on-brand */
+}
+.dist-bar-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(78,147,173,0.25);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.dist-bar-fill {
+  height: 100%;
+  background: var(--color-icon-bg);  /* teal fill matches label */
+  border-radius: 20px;
+}
+
+/* ── Tiers section label ── */
+.tiers-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(213,244,252,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin-bottom: -4px;  /* tighten gap to tiers row */
+}
+
+/* ── Medal tiers ── */
+.tiers-row {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  align-items: flex-end;  /* active card taller, others bottom-align */
+}
+.tier-card {
+  flex: 1;
+  border-radius: 8px;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+/* Active card: orange accent border + extra top padding for presence */
+.tier-card.active {
+  background: var(--color-surface-muted);
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 6px 16px rgba(224,71,0,0.25);
+  padding-top: 16px;
+}
+.tier-card.locked {
+  background: #6EABC0;
+}
+
+/* "Current" pill on active card */
+.tier-current-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  color: var(--color-text-on-dark);
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.tier-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.tier-card.active .tier-icon { background: var(--color-surface); }
+.tier-card.locked .tier-icon { background: rgba(213,244,252,0.15); }
+
+.tier-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+.lock-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  background: rgba(19,41,50,0.65);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lock-badge .iconify {
+  width: 10px;
+  height: 10px;
+  color: rgba(213,244,252,0.9);
+}
+.tier-name {
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+}
+.tier-card.active .tier-name { color: var(--color-text); }
+.tier-card.locked .tier-name { color: rgba(213,244,252,0.7); }
+.tier-pts {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+}
+.tier-card.active .tier-pts { color: var(--color-text); }
+.tier-card.locked .tier-pts { color: rgba(213,244,252,0.55); }
+.tier-check {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-icon-bg);
+  text-align: center;
+}
+
+/* ── Close button ── */
+.btn-close {
+  width: 194px;
+  height: 46px;
+  background: var(--color-surface);
+  border-radius: 8px;
+  border: none;
+  font-family: var(--font);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text);
+  cursor: pointer;
+  align-self: center;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+</style>
+</head>
+<body class="mountains-canvas">
+
+<div class="device">
+  <div class="screen">
+
+    <!-- Background + dark overlay -->
+    <div class="bg" style="background-image: url('/assets/images/bg-map.jpg'); background-position: center center;"></div>
+    <div class="dark-overlay"></div>
+
+    <!-- Status bar -->
+    <div class="status-bar" style="z-index:10;">
+      <span class="status-time" style="color:var(--color-text-on-dark);">9:41</span>
+      <div class="status-icons">
+        <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
+          <rect x="0"    y="7"   width="3" height="5"    rx="1" fill="#D5F4FC"/>
+          <rect x="4.5"  y="4.5" width="3" height="7.5"  rx="1" fill="#D5F4FC"/>
+          <rect x="9"    y="2"   width="3" height="10"   rx="1" fill="#D5F4FC"/>
+          <rect x="13.5" y="0"   width="3" height="12"   rx="1" fill="#D5F4FC"/>
+        </svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+          <circle cx="8" cy="11" r="1.2" fill="#D5F4FC"/>
+          <path d="M5 8.2C6 7.2 7 6.8 8 6.8s2 .4 3 1.4" stroke="#D5F4FC" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M2.5 5.4C4.2 3.7 6 2.8 8 2.8s3.8.9 5.5 2.6" stroke="#D5F4FC" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+        <svg width="26" height="12" viewBox="0 0 26 12" fill="none">
+          <rect x="0.5" y="0.5" width="22" height="11" rx="3.5" stroke="#D5F4FC" stroke-opacity="0.4"/>
+          <rect x="2" y="2" width="17" height="8" rx="2" fill="#D5F4FC"/>
+          <path d="M24 4.5v3a1.5 1.5 0 0 0 0-3z" fill="#D5F4FC" fill-opacity="0.45"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Logo -->
+    <img class="crowns-logo" src="/assets/logo/mountains-logo.svg" alt="Mountains">
+
+    <!-- Location pill -->
+    <button class="crowns-pill">
+      <span>Verbier</span>
+      <img src="/assets/icons/dropdown-arrow.svg" alt="">
+    </button>
+
+    <!-- Nav icons -->
+    <div class="nav-icons">
+      <button class="nav-btn" title="Friends">
+        <img class="icon-sm" src="/assets/icons/crowns-friends.svg" alt="Friends">
+      </button>
+      <button class="nav-btn" title="Activity">
+        <img class="icon-full" src="/assets/icons/crowns-chat.svg" alt="Activity">
+      </button>
+      <button class="nav-btn" title="Profile">
+        <img class="avatar-img" src="/assets/icons/crowns-avatar.png" alt="Profile">
+      </button>
+    </div>
+
+    <!-- Scrollable content -->
+    <div class="content">
+
+      <!-- Hero card — current medal -->
+      <div class="hero-card">
+        <p class="hero-subtitle">Season Score</p>
+        <p class="hero-title">Bronze Medal</p>
+
+        <div class="hero-medal">
+          <img src="/assets/icons/medal.png" alt="Bronze Medal">
+        </div>
+
+        <div class="progress-section">
+          <div class="progress-labels">
+            <span class="progress-current">740<span>pts</span></span>
+            <span class="progress-target">1,000 pts</span>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" style="width:74%"></div>
+          </div>
+          <p class="progress-hint">260 points to Silver</p>
+        </div>
+      </div>
+
+      <!-- Points Distribution -->
+      <div class="dist-card">
+        <p class="dist-title">Points Distribution</p>
+        <div class="dist-rows">
+
+          <!-- Resort Explored -->
+          <div class="dist-row">
+            <div class="dist-icon">
+              <img src="/assets/icons/scoring-resort.svg" alt="">
+            </div>
+            <div class="dist-info">
+              <p class="dist-label">Resort Explored</p>
+              <div class="dist-value-row">
+                <span class="dist-value">440 pts</span>
+                <span class="dist-pct">440 of 740 pts</span>
+              </div>
+              <div class="dist-bar-track">
+                <div class="dist-bar-fill" style="width:59%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Time on Mountain -->
+          <div class="dist-row">
+            <div class="dist-icon">
+              <img src="/assets/icons/scoring-time.svg" alt="">
+            </div>
+            <div class="dist-info">
+              <p class="dist-label">Time on Mountain</p>
+              <div class="dist-value-row">
+                <span class="dist-value">300 pts</span>
+                <span class="dist-pct">300 of 740 pts</span>
+              </div>
+              <div class="dist-bar-track">
+                <div class="dist-bar-fill" style="width:41%"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Medal tiers -->
+      <p class="tiers-label">Season Medals</p>
+      <div class="tiers-row">
+
+        <!-- Bronze — active -->
+        <div class="tier-card active">
+          <div class="tier-current-badge">Current</div>
+          <div class="tier-icon">
+            <img src="/assets/icons/medal.png" alt="Bronze">
+          </div>
+          <p class="tier-name">Bronze</p>
+          <p class="tier-pts">500 pts</p>
+          <p class="tier-check">Achieved ✓</p>
+        </div>
+
+        <!-- Silver — locked -->
+        <div class="tier-card locked">
+          <div class="tier-icon">
+            <img src="/assets/icons/medal.png" alt="Silver" style="opacity:0.6;">
+            <div class="lock-badge">
+              <span class="iconify" data-icon="fluent:lock-closed-24-filled"></span>
+            </div>
+          </div>
+          <p class="tier-name">Silver</p>
+          <p class="tier-pts">1,000 pts</p>
+        </div>
+
+        <!-- Gold — locked -->
+        <div class="tier-card locked">
+          <div class="tier-icon">
+            <img src="/assets/icons/medal.png" alt="Gold" style="opacity:0.6;">
+            <div class="lock-badge">
+              <span class="iconify" data-icon="fluent:lock-closed-24-filled"></span>
+            </div>
+          </div>
+          <p class="tier-name">Gold</p>
+          <p class="tier-pts">2,000 pts</p>
+        </div>
+
+      </div>
+
+      <!-- Close -->
+      <button class="btn-close">Close</button>
+
+    </div><!-- /content -->
+
+    <!-- Bottom strip -->
+    <div class="bottom-strip" style="z-index:10;">
+      <div class="home-indicator"></div>
+    </div>
+
+  </div><!-- /screen -->
+</div><!-- /device -->
+
+<p class="page-label">Mountains · Crowns Hub · Screen 6</p>
+
+</body>
+</html>

@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mountains — Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --brand-primary:#E04700;
+  --brand-surface:#D5F4FC;
+  --brand-muted:#BBE2EC;
+  --brand-teal:#4E93AD;
+  --brand-dark:#080808;
+  --doc-bg:#0c0c0c;
+  --doc-sidebar:#111;
+  --doc-card:#1a1a1a;
+  --doc-card2:#222;
+  --doc-border:rgba(255,255,255,0.07);
+  --doc-text:#f0f0f0;
+  --doc-muted:rgba(240,240,240,0.45);
+  --doc-accent:#E04700;
+  --font:'Archivo Expanded',sans-serif;
+  --mono:'SF Mono','Fira Code','JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--doc-bg);color:var(--doc-text);display:flex;min-height:100vh;line-height:1.5}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:220px;flex-shrink:0;background:var(--doc-sidebar);
+  border-right:1px solid var(--doc-border);
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+  display:flex;flex-direction:column;padding:28px 0 40px;
+  scrollbar-width:none;
+}
+.sidebar::-webkit-scrollbar{display:none}
+.sidebar-logo{padding:0 20px 28px;border-bottom:1px solid var(--doc-border)}
+.sidebar-logo img{height:20px;width:auto;display:block}
+.sidebar-logo .version{font-size:10px;color:var(--doc-muted);margin-top:6px;font-family:var(--mono)}
+.nav-group{margin-top:20px}
+.nav-group-label{
+  font-size:8px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(240,240,240,0.25);padding:0 20px 8px;
+}
+.nav-link{
+  display:block;font-size:12px;font-weight:700;color:var(--doc-muted);
+  padding:7px 20px;text-decoration:none;border-left:2px solid transparent;
+  transition:color 0.15s,border-color 0.15s;
+}
+.nav-link:hover{color:var(--doc-text)}
+.nav-link.active{color:var(--brand-primary);border-left-color:var(--brand-primary)}
+.nav-link.sub{font-weight:400;padding-left:32px;font-size:11px}
+
+/* ── MAIN ── */
+main{flex:1;min-width:0;padding:60px 56px 120px;max-width:960px}
+
+/* ── SECTION ── */
+section{margin-bottom:80px}
+.section-title{
+  font-size:28px;font-weight:700;color:var(--doc-text);
+  margin-bottom:8px;padding-bottom:16px;
+  border-bottom:1px solid var(--doc-border);
+}
+.section-desc{font-size:13px;color:var(--doc-muted);margin-bottom:32px;line-height:1.7;max-width:600px}
+.subsection{margin-bottom:48px}
+.subsection-title{font-size:14px;font-weight:700;color:var(--doc-text);margin-bottom:16px;letter-spacing:0.02em}
+
+/* ── PILL TAG ── */
+.tag{
+  display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.08em;
+  text-transform:uppercase;padding:2px 7px;border-radius:4px;
+  background:rgba(224,71,0,0.15);color:var(--brand-primary);
+}
+.tag.warn{background:rgba(255,200,0,0.12);color:#f5c400}
+.tag.info{background:rgba(78,147,173,0.15);color:var(--brand-teal)}
+
+/* ── PREVIEW BOX ── */
+.preview{
+  border-radius:10px;border:1px solid var(--doc-border);
+  overflow:hidden;margin-bottom:12px;
+}
+.preview-dark{background:#1a1a1a;padding:32px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.preview-photo{
+  background:url('/assets/images/bg-top-speed.png') center/cover;
+  padding:32px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;
+}
+.preview-light{background:var(--brand-surface);padding:32px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.preview-teal{background:var(--brand-teal);padding:32px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.preview-card{background:#D5F4FC;padding:24px;display:flex;flex-direction:column;gap:8px}
+
+/* ── CODE SNIPPET ── */
+.code-block{
+  background:#0d1117;border:1px solid var(--doc-border);
+  border-radius:6px;padding:14px 16px;font-family:var(--mono);
+  font-size:11px;color:#a5b4c3;line-height:1.7;overflow-x:auto;
+  margin-top:8px;
+}
+.code-block .kw{color:#7ee787}
+.code-block .val{color:#e3b341}
+.code-block .cm{color:#8b949e}
+.code-block .sel{color:#79c0ff}
+.code-block .prop{color:#7ee787}
+
+/* ── TOKEN CHIP ── */
+.token-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--doc-card2);border:1px solid var(--doc-border);
+  border-radius:4px;padding:3px 8px 3px 6px;
+  font-family:var(--mono);font-size:10px;color:var(--doc-muted);
+  cursor:pointer;transition:border-color 0.15s,color 0.15s;
+}
+.token-chip:hover{border-color:var(--brand-primary);color:var(--doc-text)}
+.token-chip .swatch-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ── COLOR GRID ── */
+.color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.color-card{
+  border-radius:8px;border:1px solid var(--doc-border);overflow:hidden;
+  cursor:pointer;transition:border-color 0.15s;
+}
+.color-card:hover{border-color:rgba(255,255,255,0.2)}
+.color-swatch{height:72px}
+.color-info{background:var(--doc-card);padding:12px}
+.color-token{font-family:var(--mono);font-size:10px;color:var(--brand-primary);display:block;margin-bottom:3px}
+.color-hex{font-size:13px;font-weight:700;color:var(--doc-text);display:block;margin-bottom:4px}
+.color-usage{font-size:10px;color:var(--doc-muted);line-height:1.5}
+.color-copy-hint{font-size:9px;color:var(--doc-muted);margin-top:4px;opacity:0}
+.color-card:hover .color-copy-hint{opacity:1}
+
+/* ── TYPE SCALE ── */
+.type-row{
+  display:flex;align-items:flex-start;gap:24px;padding:20px;
+  border-radius:8px;border:1px solid var(--doc-border);
+  background:var(--doc-card);margin-bottom:8px;
+}
+.type-preview{font-family:'Archivo Expanded',sans-serif;color:var(--doc-text);flex-shrink:0;min-width:200px;max-width:260px}
+.type-specs{flex:1}
+.type-name{font-size:11px;font-weight:700;color:var(--brand-primary);margin-bottom:4px}
+.type-detail{font-size:11px;color:var(--doc-muted);font-family:var(--mono);margin-bottom:4px}
+.type-use{font-size:11px;color:var(--doc-muted);line-height:1.5}
+
+/* ── SPACING SCALE ── */
+.spacing-row{
+  display:flex;align-items:center;gap:16px;padding:10px 16px;
+  border-radius:6px;margin-bottom:4px;
+}
+.spacing-row:hover{background:var(--doc-card)}
+.spacing-bar-wrap{width:280px}
+.spacing-bar{height:8px;background:var(--brand-primary);border-radius:2px;opacity:0.8}
+.spacing-token{font-family:var(--mono);font-size:10px;color:var(--brand-primary);width:80px}
+.spacing-val{font-family:var(--mono);font-size:10px;color:var(--doc-muted);width:36px}
+
+/* ── RADIUS ── */
+.radius-grid{display:flex;gap:20px;flex-wrap:wrap}
+.radius-card{
+  background:var(--doc-card);border:1px solid var(--doc-border);
+  padding:20px 24px;border-radius:8px;text-align:center;min-width:140px;
+}
+.radius-demo{
+  width:64px;height:64px;background:var(--brand-primary);
+  margin:0 auto 12px;opacity:0.85;
+}
+.radius-token{font-family:var(--mono);font-size:10px;color:var(--brand-primary);display:block;margin-bottom:3px}
+.radius-val{font-size:12px;font-weight:700;color:var(--doc-text)}
+
+/* ── COMPONENT HEADER ── */
+.comp-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.comp-title{font-size:14px;font-weight:700;color:var(--doc-text)}
+.comp-spec{font-size:10px;color:var(--doc-muted);font-family:var(--mono);margin-left:auto}
+
+/* ── ICON GRID ── */
+.icon-grid{display:flex;flex-wrap:wrap;gap:12px}
+.icon-cell{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:16px 12px;background:var(--doc-card);border-radius:8px;
+  border:1px solid var(--doc-border);min-width:90px;
+}
+.icon-bubble{
+  width:40px;height:40px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+}
+.icon-bubble.teal{background:#4E93AD}
+.icon-bubble.orange{background:#E04700}
+.icon-bubble .iconify{width:20px;height:20px;color:#D5F4FC}
+.icon-name{font-family:var(--mono);font-size:9px;color:var(--doc-muted);text-align:center;line-height:1.4}
+
+/* ── ASSET GRID ── */
+.asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.asset-card{
+  background:var(--doc-card);border:1px solid var(--doc-border);
+  border-radius:8px;overflow:hidden;
+}
+.asset-preview{
+  height:80px;display:flex;align-items:center;justify-content:center;
+  background:#111;padding:12px;
+}
+.asset-preview img{max-height:56px;max-width:100%;object-fit:contain}
+.asset-info{padding:10px 12px}
+.asset-path{font-family:var(--mono);font-size:9px;color:var(--brand-primary);display:block;margin-bottom:2px}
+.asset-desc{font-size:10px;color:var(--doc-muted)}
+
+/* ── SCREEN GRID ── */
+.screen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.screen-card{
+  background:var(--doc-card);border:1px solid var(--doc-border);
+  border-radius:8px;padding:16px;text-decoration:none;
+  transition:border-color 0.15s;display:block;
+}
+.screen-card:hover{border-color:var(--brand-primary)}
+.screen-name{font-size:13px;font-weight:700;color:var(--doc-text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.screen-node{font-family:var(--mono);font-size:9px;color:var(--brand-primary);margin-bottom:6px;display:block}
+.screen-desc{font-size:11px;color:var(--doc-muted);line-height:1.5}
+.screen-badge{
+  font-size:8px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  padding:2px 6px;border-radius:3px;flex-shrink:0;
+}
+.screen-badge.stable{background:rgba(78,147,173,0.2);color:var(--brand-teal)}
+.screen-badge.planned{background:rgba(240,240,240,0.08);color:var(--doc-muted)}
+
+/* ── RULES ── */
+.rule-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.rule-item{
+  display:flex;gap:12px;padding:14px 16px;
+  background:var(--doc-card);border-radius:8px;
+  border-left:3px solid var(--brand-primary);
+  font-size:12px;color:var(--doc-muted);line-height:1.6;
+}
+.rule-item.warn{border-left-color:#f5c400}
+.rule-em{color:var(--doc-text);font-weight:700}
+
+/* ── DIVIDER ── */
+hr.divider{border:none;border-top:1px solid var(--doc-border);margin:40px 0}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:32px;right:32px;
+  background:var(--brand-primary);color:#fff;
+  font-size:12px;font-weight:700;padding:10px 16px;border-radius:6px;
+  pointer-events:none;z-index:9999;
+  animation:fadeup 0.2s ease;
+}
+@keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ── LIVE COMPONENTS (match actual app styles) ── */
+.m-btn-primary{
+  height:40px;width:200px;background:#080808;
+  color:#D5F4FC;font-family:'Archivo Expanded',sans-serif;
+  font-size:16px;font-weight:700;border-radius:8px;border:none;
+  cursor:pointer;display:inline-flex;align-items:center;justify-content:center;
+}
+.m-btn-view{
+  height:40px;width:90px;background:#080808;
+  color:#D5F4FC;font-family:'Archivo Expanded',sans-serif;
+  font-size:17px;font-weight:700;border-radius:8px;border:none;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.m-btn-close{
+  height:46px;width:194px;background:#D5F4FC;
+  color:#080808;font-family:'Archivo Expanded',sans-serif;
+  font-size:17px;font-weight:700;border-radius:8px;border:none;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.m-btn-social{
+  height:44px;width:148px;background:#BBE2EC;
+  border-radius:8px;border:none;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:'Archivo Expanded',sans-serif;font-size:12px;font-weight:400;color:#080808;
+}
+.m-input{
+  height:40px;width:280px;background:#BBE2EC;
+  border-radius:8px;border:none;padding:0 12px;
+  font-family:'Archivo Expanded',sans-serif;font-size:16px;color:#080808;
+}
+.m-input::placeholder{color:rgba(8,8,8,0.5)}
+.m-stat-hero{
+  width:194px;height:84px;background:#E04700;
+  border-radius:8px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.m-stat-hero .val-row{display:flex;align-items:baseline;gap:4px}
+.m-stat-hero .big{font-size:38px;font-weight:700;color:#D5F4FC;line-height:1.15;font-family:'Archivo Expanded',sans-serif}
+.m-stat-hero .unit{font-size:18px;font-weight:700;color:#D5F4FC;font-family:'Archivo Expanded',sans-serif}
+.m-stat-hero .lbl{font-size:15px;font-weight:700;color:#D5F4FC;font-family:'Archivo Expanded',sans-serif}
+.m-stat-row{
+  width:313px;height:64px;background:#BBE2EC;border-radius:8px;
+  display:flex;align-items:center;gap:12px;padding:0 12px;
+}
+.m-icon-btn{
+  width:40px;height:40px;background:#4E93AD;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.m-icon-btn .iconify{width:20px;height:20px;color:#D5F4FC}
+.m-icon-btn-map{
+  width:40px;height:40px;background:rgba(213,244,252,0.8);
+  backdrop-filter:blur(7.5px);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.m-stat-row-text{flex:1}
+.m-stat-row-label{font-size:10px;font-weight:700;color:#080808;text-transform:uppercase;font-family:'Archivo Expanded',sans-serif}
+.m-stat-row-value{font-size:18px;font-weight:700;color:#080808;font-family:'Archivo Expanded',sans-serif}
+.m-pill{
+  height:24px;padding:0 8px 0 10px;background:rgba(213,244,252,0.8);
+  backdrop-filter:blur(7.5px);border-radius:28px;
+  display:inline-flex;align-items:center;gap:4px;border:none;cursor:pointer;
+}
+.m-pill span{font-size:12px;font-weight:700;color:#080808;font-family:'Archivo Expanded',sans-serif}
+.m-dot-row{display:flex;align-items:center;gap:15px;padding:8px 0}
+.m-dot{width:10px;height:10px;border-radius:50%;background:rgba(213,244,252,0.4);flex-shrink:0}
+.m-dot.active{background:#E04700}
+.m-notif-group{background:rgba(213,244,252,0.88);border-radius:8px;overflow:hidden;width:100%;max-width:353px}
+.m-notif-item{display:flex;align-items:center;padding:12px;gap:12px}
+.m-notif-item+.m-notif-item{border-top:1px solid rgba(8,8,8,0.07)}
+.m-notif-item.unread{background:rgba(255,255,255,0.22)}
+.m-notif-icon{width:40px;height:40px;background:#4E93AD;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.m-notif-icon.milestone{background:#E04700}
+.m-notif-icon .iconify{width:20px;height:20px;color:#D5F4FC}
+.m-notif-text{flex:1}
+.m-notif-title{font-size:12px;font-weight:700;color:#080808;font-family:'Archivo Expanded',sans-serif;margin-bottom:2px}
+.m-notif-body{font-size:12px;color:#080808;font-family:'Archivo Expanded',sans-serif}
+.m-notif-meta{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.m-notif-time{font-size:10px;color:rgba(8,8,8,0.5);font-family:'Archivo Expanded',sans-serif}
+.m-notif-dot{width:8px;height:8px;border-radius:50%;background:#E04700}
+.m-checkbox{width:24px;height:24px;border-radius:8px;border:3px solid #BBE2EC;background:white;display:inline-flex;align-items:center;justify-content:center}
+.m-checkbox.checked{background:#E04700;border-color:#E04700}
+.m-section-label{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#D5F4FC;font-family:'Archivo Expanded',sans-serif;padding:8px 0}
+.m-header-icons{display:flex;gap:16px;align-items:center}
+.m-header-icon{width:40px;height:40px;background:rgba(213,244,252,0.8);backdrop-filter:blur(7.5px);border-radius:8px;display:flex;align-items:center;justify-content:center;position:relative}
+.m-header-icon img{width:18px;height:18px}
+.m-header-icon .badge{position:absolute;top:7px;right:7px;width:8px;height:8px;background:#E04700;border-radius:50%;border:1.5px solid rgba(213,244,252,0.8)}
+.m-strip{height:40px;background:rgba(213,244,252,0.8);backdrop-filter:blur(7.5px);border-radius:12px 12px 0 0;display:flex;align-items:center;justify-content:center;width:280px}
+.m-home-ind{width:100px;height:4px;background:rgba(8,8,8,0.18);border-radius:2px;margin-top:8px}
+.m-user-marker{width:32px;height:32px;border-radius:50%;background:#E04700;display:flex;align-items:center;justify-content:center}
+.m-user-marker-inner{width:20px;height:20px;border-radius:50%;background:#D5F4FC;overflow:hidden}
+.m-user-marker-inner img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <img src="/assets/logo/mountains-logo.svg" alt="Mountains">
+    <span class="version">Design System v1.0</span>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Foundation</div>
+    <a href="#brand" class="nav-link">Brand</a>
+    <a href="#colors" class="nav-link">Colors</a>
+    <a href="#typography" class="nav-link">Typography</a>
+    <a href="#spacing" class="nav-link">Spacing</a>
+    <a href="#radius" class="nav-link">Border Radius</a>
+    <a href="#effects" class="nav-link">Effects</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Components</div>
+    <a href="#buttons" class="nav-link">Buttons</a>
+    <a href="#inputs" class="nav-link">Input Field</a>
+    <a href="#stat-hero" class="nav-link">Stat Hero Card</a>
+    <a href="#stat-row" class="nav-link">Stat Row</a>
+    <a href="#icon-btns" class="nav-link">Icon Buttons</a>
+    <a href="#header-nav" class="nav-link">Header Nav</a>
+    <a href="#location-pill" class="nav-link">Location Pill</a>
+    <a href="#pagination" class="nav-link">Pagination Dots</a>
+    <a href="#notifications" class="nav-link">Notifications</a>
+    <a href="#misc" class="nav-link">Misc</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Reference</div>
+    <a href="#icons" class="nav-link">Icon Library</a>
+    <a href="#assets" class="nav-link">Assets</a>
+    <a href="#screens" class="nav-link">Screens</a>
+    <a href="#rules" class="nav-link">Rules</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+<!-- ═══════════════════════════════════════ BRAND -->
+<section id="brand">
+  <h1 class="section-title">Mountains Design System</h1>
+  <p class="section-desc">Mountain companion app for tracking speed, distance, routes, and vertical drops in real time. All values follow a strict <strong style="color:var(--doc-text)">4px grid</strong> — every spacing, sizing, and positioning value is a multiple of 4.</p>
+
+  <div class="subsection">
+    <div class="subsection-title">Logo</div>
+    <div class="preview">
+      <div style="background:#111;padding:32px;display:flex;gap:32px;align-items:center;flex-wrap:wrap">
+        <div>
+          <img src="/assets/logo/mountains-logo.svg" style="height:28px;display:block" alt="Mountains logo">
+          <p style="font-size:10px;color:var(--doc-muted);margin-top:8px;font-family:var(--mono)">mountains-logo.svg · on dark</p>
+        </div>
+        <div style="background:var(--brand-surface);padding:16px 24px;border-radius:8px">
+          <img src="/assets/logo/mountains-logo-dark.svg" style="height:28px;display:block" alt="Mountains logo dark">
+          <p style="font-size:10px;color:rgba(8,8,8,0.4);margin-top:8px;font-family:var(--mono)">mountains-logo-dark.svg · on light</p>
+        </div>
+        <div>
+          <img src="/assets/logo/mountains-icon.svg" style="height:48px;display:block" alt="Mountains icon">
+          <p style="font-size:10px;color:var(--doc-muted);margin-top:8px;font-family:var(--mono)">mountains-icon.svg · 48×48</p>
+        </div>
+      </div>
+    </div>
+    <div class="code-block"><span class="cm">/* Logo paths */</span>
+/assets/logo/mountains-logo.svg      <span class="cm">← light wordmark (on dark bg)</span>
+/assets/logo/mountains-logo-dark.svg <span class="cm">← dark wordmark (on light bg)</span>
+/assets/logo/mountains-icon.svg      <span class="cm">← icon only, 48×48px</span></div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Tagline</div>
+    <p style="font-size:14px;color:var(--doc-muted);font-style:italic;line-height:1.7">"Your mountain companion — track your speed, distance, routes, and vertical drops in real time."</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ COLORS -->
+<section id="colors">
+  <h2 class="section-title">Color Palette</h2>
+  <p class="section-desc">Click any swatch to copy the hex value. All tokens are defined in <code style="font-family:var(--mono);font-size:11px;color:var(--brand-primary)">assets/css/tokens.css</code>.</p>
+
+  <div class="color-grid">
+    <div class="color-card" onclick="copyText('#E04700','color-primary')">
+      <div class="color-swatch" style="background:#E04700"></div>
+      <div class="color-info">
+        <span class="color-token">--color-primary</span>
+        <span class="color-hex">#E04700</span>
+        <span class="color-usage">CTA buttons, active states, stat cards, accent markers</span>
+        <span class="color-copy-hint">Click to copy</span>
+      </div>
+    </div>
+    <div class="color-card" onclick="copyText('#D5F4FC','color-surface')">
+      <div class="color-swatch" style="background:#D5F4FC"></div>
+      <div class="color-info">
+        <span class="color-token">--color-surface</span>
+        <span class="color-hex">#D5F4FC</span>
+        <span class="color-usage">Card backgrounds, nav bar, frosted panels, Close button</span>
+        <span class="color-copy-hint">Click to copy</span>
+      </div>
+    </div>
+    <div class="color-card" onclick="copyText('#BBE2EC','color-surface-muted')">
+      <div class="color-swatch" style="background:#BBE2EC"></div>
+      <div class="color-info">
+        <span class="color-token">--color-surface-muted</span>
+        <span class="color-hex">#BBE2EC</span>
+        <span class="color-usage">Input fields, secondary buttons, stat row backgrounds</span>
+        <span class="color-copy-hint">Click to copy</span>
+      </div>
+    </div>
+    <div class="color-card" onclick="copyText('#4E93AD','color-icon-bg')">
+      <div class="color-swatch" style="background:#4E93AD"></div>
+      <div class="color-info">
+        <span class="color-token">--color-icon-bg</span>
+        <span class="color-hex">#4E93AD</span>
+        <span class="color-usage">Stat row icon button backgrounds</span>
+        <span class="color-copy-hint">Click to copy</span>
+      </div>
+    </div>
+    <div class="color-card" onclick="copyText('#080808','color-text')">
+      <div class="color-swatch" style="background:#080808;border-bottom:1px solid rgba(255,255,255,0.08)"></div>
+      <div class="color-info">
+        <span class="color-token">--color-text</span>
+        <span class="color-hex">#080808</span>
+        <span class="color-usage">Headings, body text, View button bg</span>
+        <span class="color-copy-hint">Click to copy</span>
+      </div>
+    </div>
+    <div class="color-card" onclick="copyText('rgba(8,8,8,0.5)','color-text-muted')">
+      <div class="color-swatch" style="background:rgba(8,8,8,0.5)"></div>
+      <div class="color-info">
+        <span class="color-token">--color-text-muted</span>
+        <span class="color-hex">rgba(8,8,8,0.5)</span>
+        <span class="color-usage">Placeholder text, subtitles</span>
+        <span class="color-copy-hint">Click to copy</span>
+      </div>
+    </div>
+    <div class="color-card" onclick="copyText('#D5F4FC','color-text-on-dark')">
+      <div class="color-swatch" style="background:#D5F4FC"></div>
+      <div class="color-info">
+        <span class="color-token">--color-text-on-dark</span>
+        <span class="color-hex">#D5F4FC</span>
+        <span class="color-usage">Text on dark photo backgrounds — always solid</span>
+        <span class="color-copy-hint">Click to copy</span>
+      </div>
+    </div>
+    <div class="color-card" onclick="copyText('#EA4335','color-error-link')">
+      <div class="color-swatch" style="background:#EA4335"></div>
+      <div class="color-info">
+        <span class="color-token">--color-error-link</span>
+        <span class="color-hex">#EA4335</span>
+        <span class="color-usage">Legal inline links (Terms, Privacy Policy)</span>
+        <span class="color-copy-hint">Click to copy</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px;padding:14px 16px;background:var(--doc-card);border-radius:8px;border-left:3px solid #f5c400;font-size:11px;color:var(--doc-muted)">
+    <strong style="color:#f5c400">⚠ Rule:</strong> Text on dark photo backgrounds always uses <code style="font-family:var(--mono);color:var(--brand-primary)">#D5F4FC</code> or <code style="font-family:var(--mono);color:var(--brand-primary)">#BBE2EC</code> as solid tokens — never invented rgba opacity values like <code style="font-family:var(--mono);color:#f5c400">rgba(213,244,252,0.55)</code>.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ TYPOGRAPHY -->
+<section id="typography">
+  <h2 class="section-title">Typography</h2>
+  <p class="section-desc">All text uses <strong style="color:var(--doc-text)">Archivo Expanded</strong> exclusively — loaded from Google Fonts. Only the sizes in this scale exist in the system. 11px, 13px, 14px, 15px are not valid type sizes.</p>
+
+  <div class="type-row">
+    <div class="type-preview" style="font-size:38px;font-weight:700;line-height:1.25">74.0</div>
+    <div class="type-specs">
+      <div class="type-name">display-xl</div>
+      <div class="type-detail">38px · Bold · lh 1.25 · --fs-38 --fw-bold</div>
+      <div class="type-use">Stat hero value (e.g. "74.0")</div>
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-preview" style="font-size:20px;font-weight:700;line-height:1.25">Days on Mountains</div>
+    <div class="type-specs">
+      <div class="type-name">heading-lg</div>
+      <div class="type-detail">20px · Bold · lh 1.25 · --fs-20 --fw-bold</div>
+      <div class="type-use">Screen section titles</div>
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-preview" style="font-size:18px;font-weight:700;line-height:1.25">My Profile</div>
+    <div class="type-specs">
+      <div class="type-name">heading-md / display-lg</div>
+      <div class="type-detail">18px · Bold · lh 1.25 · --fs-18 --fw-bold</div>
+      <div class="type-use">Card/screen titles, stat row values, stat unit labels</div>
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-preview" style="font-size:17px;font-weight:700;line-height:1.25">View</div>
+    <div class="type-specs">
+      <div class="type-name">cta-md <span class="tag warn">TODO</span></div>
+      <div class="type-detail">17px · Bold · lh 1.25 · --fs-17 --fw-bold</div>
+      <div class="type-use">Button labels (View, Close) — needs standardising to 16px</div>
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-preview" style="font-size:16px;font-weight:700;line-height:1.25">Sign Up</div>
+    <div class="type-specs">
+      <div class="type-name">cta-lg / body-md</div>
+      <div class="type-detail">16px · Bold/Regular · lh 1.25 · --fs-16</div>
+      <div class="type-use">Primary full-width button labels; body copy, placeholders (Regular)</div>
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-preview" style="font-size:12px;font-weight:700;line-height:1.25">Verbier</div>
+    <div class="type-specs">
+      <div class="type-name">label-sm / body-sm / legal-sm</div>
+      <div class="type-detail">12px · Bold or Regular · lh 1.25/1.6 · --fs-12</div>
+      <div class="type-use">Peak names, location labels, pill text, notification text, legal copy</div>
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-preview" style="font-size:10px;font-weight:700;line-height:1.25;letter-spacing:0.08em;text-transform:uppercase">TOP SPEED</div>
+    <div class="type-specs">
+      <div class="type-name">label-xs / caption</div>
+      <div class="type-detail">10px · Bold (uppercase) or Regular · lh 1.25 · --fs-10</div>
+      <div class="type-use">Stat row labels, section date labels, timestamps</div>
+    </div>
+  </div>
+
+  <div class="code-block" style="margin-top:20px"><span class="cm">/* Load from Google Fonts */</span>
+<span class="kw">@import</span> <span class="val">url('https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@400;700&display=swap')</span>;
+
+<span class="sel">:root</span> {
+  <span class="prop">--font</span>: <span class="val">'Archivo Expanded'</span>, sans-serif;
+  <span class="prop">--fs-38</span>: <span class="val">38px</span>;  <span class="cm">/* display-xl */</span>
+  <span class="prop">--fs-20</span>: <span class="val">20px</span>;  <span class="cm">/* heading-lg */</span>
+  <span class="prop">--fs-18</span>: <span class="val">18px</span>;  <span class="cm">/* heading-md / display-lg */</span>
+  <span class="prop">--fs-17</span>: <span class="val">17px</span>;  <span class="cm">/* cta-md */</span>
+  <span class="prop">--fs-16</span>: <span class="val">16px</span>;  <span class="cm">/* body-md / cta-lg */</span>
+  <span class="prop">--fs-12</span>: <span class="val">12px</span>;  <span class="cm">/* label-sm / body-sm */</span>
+  <span class="prop">--fs-10</span>: <span class="val">10px</span>;  <span class="cm">/* label-xs / caption */</span>
+}</div>
+</section>
+
+<!-- ═══════════════════════════════════════ SPACING -->
+<section id="spacing">
+  <h2 class="section-title">Spacing Scale</h2>
+  <p class="section-desc">Base unit is <strong style="color:var(--doc-text)">4px</strong>. Every spacing, sizing, and positioning value must be a multiple of 4.</p>
+
+  <div>
+    <div class="spacing-row"><span class="spacing-token">--space-1</span><span class="spacing-val">4px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:4px"></div></div></div>
+    <div class="spacing-row"><span class="spacing-token">--space-2</span><span class="spacing-val">8px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:8px"></div></div></div>
+    <div class="spacing-row"><span class="spacing-token">--space-3</span><span class="spacing-val">12px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:12px"></div></div></div>
+    <div class="spacing-row"><span class="spacing-token">--space-4</span><span class="spacing-val">16px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:16px"></div></div></div>
+    <div class="spacing-row"><span class="spacing-token">--space-5</span><span class="spacing-val">20px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:20px"></div></div></div>
+    <div class="spacing-row"><span class="spacing-token">--space-6</span><span class="spacing-val">24px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:24px"></div></div></div>
+    <div class="spacing-row"><span class="spacing-token">--space-7</span><span class="spacing-val">28px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:28px"></div></div></div>
+    <div class="spacing-row"><span class="spacing-token">--space-8</span><span class="spacing-val">32px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:32px"></div></div></div>
+    <div class="spacing-row"><span class="spacing-token">--space-9</span><span class="spacing-val">36px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:36px"></div></div></div>
+    <div class="spacing-row"><span class="spacing-token">--space-10</span><span class="spacing-val">40px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:40px"></div></div></div>
+    <div class="spacing-row"><span class="spacing-token">--space-11</span><span class="spacing-val">44px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:44px"></div></div></div>
+    <div class="spacing-row"><span class="spacing-token">--space-12</span><span class="spacing-val">48px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:48px"></div></div></div>
+    <div class="spacing-row"><span class="spacing-token">--space-14</span><span class="spacing-val">56px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:56px"></div></div></div>
+  </div>
+
+  <div style="margin-top:24px;font-size:12px;color:var(--doc-muted);line-height:1.7">
+    <strong style="color:var(--doc-text)">Key layout values:</strong> Screen 393×852px · Horizontal padding 20px outer / 40px inner · Header 56px · Status bar 44px · Bottom strip 40px
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ RADIUS -->
+<section id="radius">
+  <h2 class="section-title">Border Radius</h2>
+  <p class="section-desc">Three levels — sharp cards, soft pills, full circles.</p>
+  <div class="radius-grid">
+    <div class="radius-card">
+      <div class="radius-demo" style="border-radius:8px"></div>
+      <span class="radius-token">--radius-sm</span>
+      <span class="radius-val">8px</span>
+      <p style="font-size:10px;color:var(--doc-muted);margin-top:6px">Buttons, inputs, cards, icon buttons, stat rows</p>
+    </div>
+    <div class="radius-card">
+      <div class="radius-demo" style="border-radius:28px"></div>
+      <span class="radius-token">--radius-md</span>
+      <span class="radius-val">28px</span>
+      <p style="font-size:10px;color:var(--doc-muted);margin-top:6px">Pills (location selector), bottom nav</p>
+    </div>
+    <div class="radius-card">
+      <div class="radius-demo" style="border-radius:48px"></div>
+      <span class="radius-token">--radius-lg</span>
+      <span class="radius-val">48px</span>
+      <p style="font-size:10px;color:var(--doc-muted);margin-top:6px">Avatar badges, user markers on map</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ EFFECTS -->
+<section id="effects">
+  <h2 class="section-title">Effects</h2>
+
+  <div class="subsection">
+    <div class="subsection-title">Frosted Glass</div>
+    <div class="preview preview-photo" style="gap:24px">
+      <div style="width:120px;height:60px;background:rgba(213,244,252,0.8);backdrop-filter:blur(7.5px);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#080808">Surface blur</div>
+      <div style="width:120px;height:60px;background:rgba(213,244,252,0.88);backdrop-filter:blur(7.5px);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#080808">Notif card</div>
+    </div>
+    <div class="code-block"><span class="prop">--blur</span>: <span class="val">blur(7.5px)</span>;
+<span class="prop">--surface-blur</span>: <span class="val">rgba(213,244,252,0.8)</span>;  <span class="cm">/* frosted panel fill */</span>
+
+<span class="cm">/* Usage */</span>
+<span class="sel">.frosted</span> {
+  background: <span class="val">var(--surface-blur)</span>;
+  backdrop-filter: <span class="val">var(--blur)</span>;
+  -webkit-backdrop-filter: <span class="val">var(--blur)</span>;
+}</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Dark Gradient Overlay</div>
+    <div class="preview preview-photo" style="padding:0;position:relative;height:120px">
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.7),rgba(0,0,0,0));border-radius:0"></div>
+      <span style="position:absolute;top:16px;left:20px;font-size:12px;font-weight:700;color:#D5F4FC">Header area</span>
+      <span style="position:absolute;bottom:16px;left:20px;font-size:12px;color:rgba(255,255,255,0.5)">Content area</span>
+    </div>
+    <div class="code-block"><span class="cm">/* Top 200px gradient over map/photo backgrounds */</span>
+background: <span class="val">linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0))</span>;</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ BUTTONS -->
+<section id="buttons">
+  <h2 class="section-title">Buttons</h2>
+  <p class="section-desc">
+    <span class="tag warn">TODO</span> Button size system needed — current screens have inconsistent heights (40, 44, 46px). Widths vary by context.
+  </p>
+
+  <div class="subsection">
+    <div class="comp-header">
+      <span class="comp-title">Primary — Full Width</span>
+      <span class="comp-spec">312×40px · #080808 · 16px Bold</span>
+    </div>
+    <div class="preview"><div class="preview-dark"><button class="m-btn-primary">Sign Up</button><button class="m-btn-primary" style="width:200px">Log In</button></div></div>
+    <div class="code-block"><span class="sel">.btn-primary</span> {
+  height: <span class="val">40px</span>; width: <span class="val">312px</span>;
+  background: <span class="val">var(--color-text)</span>;    <span class="cm">/* #080808 */</span>
+  color: <span class="val">var(--color-text-on-dark)</span>; <span class="cm">/* #D5F4FC */</span>
+  font-size: <span class="val">var(--fs-16)</span>; font-weight: <span class="val">var(--fw-bold)</span>;
+  border-radius: <span class="val">var(--radius-sm)</span>;
+}</div>
+  </div>
+
+  <div class="subsection">
+    <div class="comp-header">
+      <span class="comp-title">Primary — Inline / View</span>
+      <span class="comp-spec">90×40px · #080808 · 17px Bold</span>
+    </div>
+    <div class="preview"><div class="preview-dark"><button class="m-btn-view">View</button></div></div>
+    <div class="code-block"><span class="sel">.btn-view</span> {
+  height: <span class="val">40px</span>; width: <span class="val">90px</span>;
+  background: <span class="val">var(--color-text)</span>;
+  color: <span class="val">var(--color-text-on-dark)</span>;
+  font-size: <span class="val">var(--fs-17)</span>;  <span class="cm">/* TODO: standardise to --fs-16 */</span>
+}</div>
+  </div>
+
+  <div class="subsection">
+    <div class="comp-header">
+      <span class="comp-title">Secondary — Close</span>
+      <span class="comp-spec">194×46px · #D5F4FC · 17px Bold</span>
+    </div>
+    <div class="preview"><div class="preview-photo"><button class="m-btn-close">Close</button></div></div>
+    <div class="code-block"><span class="sel">.btn-close</span> {
+  height: <span class="val">46px</span>; width: <span class="val">194px</span>;  <span class="cm">/* TODO: 46px is off 4px grid */</span>
+  background: <span class="val">var(--color-surface)</span>;  <span class="cm">/* #D5F4FC */</span>
+  color: <span class="val">var(--color-text)</span>;
+  font-size: <span class="val">var(--fs-17)</span>;
+}</div>
+  </div>
+
+  <div class="subsection">
+    <div class="comp-header">
+      <span class="comp-title">Social Login</span>
+      <span class="comp-spec">148×44px · #BBE2EC</span>
+    </div>
+    <div class="preview"><div class="preview-dark">
+      <button class="m-btn-social">
+        <img src="/assets/icons/google-logo.svg" style="height:18px" alt="Google">
+        Google
+      </button>
+      <button class="m-btn-social">
+        <img src="/assets/icons/apple-logo.svg" style="height:18px" alt="Apple">
+        Apple
+      </button>
+    </div></div>
+    <div class="code-block"><span class="sel">.btn-social</span> {
+  height: <span class="val">44px</span>; width: <span class="val">148px</span>;
+  background: <span class="val">var(--color-surface-muted)</span>;  <span class="cm">/* #BBE2EC */</span>
+  border-radius: <span class="val">var(--radius-sm)</span>;
+}</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ INPUTS -->
+<section id="inputs">
+  <h2 class="section-title">Input Field</h2>
+  <div class="comp-header">
+    <span class="comp-title">Text input</span>
+    <span class="comp-spec">312×40px · #BBE2EC · 16px Regular</span>
+  </div>
+  <div class="preview"><div class="preview-dark" style="flex-direction:column;align-items:flex-start">
+    <input class="m-input" placeholder="Email address" type="email">
+    <input class="m-input" placeholder="Password" type="password" style="margin-top:8px">
+  </div></div>
+  <div class="code-block"><span class="sel">.input-field</span> {
+  height: <span class="val">40px</span>; width: <span class="val">312px</span>;
+  background: <span class="val">var(--color-surface-muted)</span>;
+  backdrop-filter: <span class="val">var(--blur)</span>;
+  border-radius: <span class="val">var(--radius-sm)</span>;
+  font-size: <span class="val">var(--fs-16)</span>; font-weight: <span class="val">var(--fw-regular)</span>;
+}
+<span class="sel">.input-field::placeholder</span> { color: <span class="val">var(--color-text-muted)</span>; }</div>
+</section>
+
+<!-- ═══════════════════════════════════════ STAT HERO -->
+<section id="stat-hero">
+  <h2 class="section-title">Stat Hero Card</h2>
+  <div class="comp-header">
+    <span class="comp-title">Full stat card</span>
+    <span class="comp-spec">194×84px · #E04700</span>
+  </div>
+  <div class="preview"><div class="preview-photo" style="justify-content:center">
+    <div class="m-stat-hero">
+      <div class="val-row"><span class="big">74.0</span><span class="unit">km/h</span></div>
+      <span class="lbl">Top Speed</span>
+    </div>
+    <div class="m-stat-hero" style="margin-left:16px">
+      <div class="val-row"><span class="big">17</span></div>
+      <span class="lbl">Total Runs</span>
+    </div>
+    <div class="m-stat-hero" style="margin-left:16px">
+      <div class="val-row"><span class="big">3</span><span class="unit" style="font-size:24px">Days</span></div>
+      <span class="lbl">Riding Streak</span>
+    </div>
+  </div></div>
+  <div class="code-block"><span class="sel">.stat-hero</span> {
+  width: <span class="val">194px</span>; height: <span class="val">84px</span>;
+  background: <span class="val">var(--color-primary)</span>;  <span class="cm">/* #E04700 */</span>
+  border-radius: <span class="val">var(--radius-sm)</span>;
+}
+<span class="sel">.stat-hero-value</span> { font-size: <span class="val">var(--fs-38)</span>; color: <span class="val">var(--color-text-on-dark)</span>; }
+<span class="sel">.stat-hero-unit</span>  { font-size: <span class="val">var(--fs-18)</span>; color: <span class="val">var(--color-text-on-dark)</span>; }
+<span class="sel">.stat-hero-label</span> { font-size: <span class="val">var(--fs-12)</span>; color: <span class="val">var(--color-text-on-dark)</span>; }</div>
+</section>
+
+<!-- ═══════════════════════════════════════ STAT ROW -->
+<section id="stat-row">
+  <h2 class="section-title">Stat Row</h2>
+  <div class="comp-header">
+    <span class="comp-title">List item</span>
+    <span class="comp-spec">313×64px · #BBE2EC · 8px gap between rows</span>
+  </div>
+  <div class="preview"><div class="preview-card">
+    <div class="m-stat-row">
+      <div class="m-icon-btn"><span class="iconify" data-icon="fluent:flash-24-filled"></span></div>
+      <div class="m-stat-row-text">
+        <div class="m-stat-row-label">Top Speed</div>
+        <div class="m-stat-row-value">74.0 km/h</div>
+      </div>
+      <button class="m-btn-view">View</button>
+    </div>
+    <div class="m-stat-row" style="margin-top:8px">
+      <div class="m-icon-btn"><span class="iconify" data-icon="fluent:calendar-24-filled"></span></div>
+      <div class="m-stat-row-text">
+        <div class="m-stat-row-label">Days on Mountain</div>
+        <div class="m-stat-row-value">17 days</div>
+      </div>
+    </div>
+    <div class="m-stat-row" style="margin-top:8px;background:#E04700">
+      <div class="m-icon-btn"><span class="iconify" data-icon="fluent:star-24-filled"></span></div>
+      <div class="m-stat-row-text">
+        <div class="m-stat-row-label" style="color:#D5F4FC">Season Score</div>
+        <div class="m-stat-row-value" style="color:#D5F4FC">740 pts</div>
+      </div>
+    </div>
+  </div></div>
+  <div class="code-block"><span class="sel">.stat-row</span> {
+  width: <span class="val">313px</span>; height: <span class="val">64px</span>;
+  background: <span class="val">var(--color-surface-muted)</span>;
+  border-radius: <span class="val">var(--radius-sm)</span>;
+  display: flex; align-items: center;
+  gap: <span class="val">var(--space-3)</span>; padding: <span class="val">0 var(--space-3)</span>;
+}
+<span class="sel">.stat-row + .stat-row</span> { margin-top: <span class="val">var(--space-2)</span>; }  <span class="cm">/* 8px gap */</span>
+
+<span class="cm">/* Season Score variant */</span>
+<span class="sel">.stat-row.highlight</span> { background: <span class="val">var(--color-primary)</span>; }</div>
+</section>
+
+<!-- ═══════════════════════════════════════ ICON BUTTONS -->
+<section id="icon-btns">
+  <h2 class="section-title">Icon Buttons</h2>
+
+  <div class="subsection">
+    <div class="comp-header">
+      <span class="comp-title">Stat Row Icon Button</span>
+      <span class="comp-spec">40×40px · #4E93AD · icon #D5F4FC</span>
+    </div>
+    <div class="preview"><div class="preview-dark" style="gap:12px">
+      <div class="m-icon-btn"><span class="iconify" data-icon="fluent:flash-24-filled"></span></div>
+      <div class="m-icon-btn"><span class="iconify" data-icon="fluent:calendar-24-filled"></span></div>
+      <div class="m-icon-btn"><span class="iconify" data-icon="fluent:trophy-24-filled"></span></div>
+      <div class="m-icon-btn"><span class="iconify" data-icon="fluent:crown-24-filled"></span></div>
+    </div></div>
+    <div class="code-block"><span class="sel">.icon-btn</span> {
+  width: <span class="val">40px</span>; height: <span class="val">40px</span>;
+  background: <span class="val">var(--color-icon-bg)</span>;  <span class="cm">/* #4E93AD */</span>
+  border-radius: <span class="val">var(--radius-sm)</span>;
+}
+<span class="cm">/* Icon color: always #D5F4FC — never white */</span>
+<span class="sel">.icon-btn .iconify</span> { width: <span class="val">20px</span>; height: <span class="val">20px</span>; color: <span class="val">var(--color-text-on-dark)</span>; }</div>
+  </div>
+
+  <div class="subsection">
+    <div class="comp-header">
+      <span class="comp-title">Map Control Icon Button</span>
+      <span class="comp-spec">40×40px · frosted glass</span>
+    </div>
+    <div class="preview"><div class="preview-photo" style="gap:8px">
+      <div class="m-icon-btn-map"><img src="/assets/icons/profile-map-1.svg" style="width:40px;height:40px" alt=""></div>
+      <div class="m-icon-btn-map"><img src="/assets/icons/profile-map-2.svg" style="width:40px;height:40px" alt=""></div>
+      <div class="m-icon-btn-map" style="width:40px;height:40px"><img src="/assets/icons/profile-map-3.svg" style="width:20px;height:20px" alt=""></div>
+    </div></div>
+    <div class="code-block"><span class="sel">.icon-btn-map</span> {
+  width: <span class="val">40px</span>; height: <span class="val">40px</span>;
+  background: <span class="val">var(--surface-blur)</span>;       <span class="cm">/* rgba(213,244,252,0.8) */</span>
+  backdrop-filter: <span class="val">var(--blur)</span>;          <span class="cm">/* blur(7.5px) */</span>
+  border-radius: <span class="val">var(--radius-sm)</span>;
+}</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ HEADER NAV -->
+<section id="header-nav">
+  <h2 class="section-title">Header Nav Icons</h2>
+  <p class="section-desc">3 frosted icon buttons in every screen header — Friends, Chat (with badge), Avatar. No tab bar — all navigation lives here.</p>
+  <div class="preview"><div class="preview-photo">
+    <div class="m-header-icons">
+      <div class="m-header-icon"><img src="/assets/icons/profile.svg" style="width:18px;height:18px" alt="Friends"></div>
+      <div class="m-header-icon" style="position:relative">
+        <img src="/assets/icons/chat.svg" style="width:18px;height:18px" alt="Chat">
+        <div class="badge"></div>
+      </div>
+      <div class="m-header-icon" style="overflow:hidden;padding:0">
+        <img src="/assets/icons/profile-avatar.png" style="width:40px;height:40px;object-fit:cover;mix-blend-mode:multiply" alt="Avatar">
+      </div>
+    </div>
+  </div></div>
+  <div class="code-block"><span class="cm">/* Button 1 — Friends: profile.svg 18×18, #4E93AD fill */</span>
+<span class="cm">/* Button 2 — Chat: chat.svg 18×18, #4E93AD fill + orange dot badge */</span>
+<span class="cm">/* Button 3 — Avatar: user photo, mix-blend-mode: multiply */</span>
+
+<span class="sel">.header-icon-btn</span> {
+  width: <span class="val">40px</span>; height: <span class="val">40px</span>;
+  background: <span class="val">var(--surface-blur)</span>;
+  backdrop-filter: <span class="val">var(--blur)</span>;
+  border-radius: <span class="val">var(--radius-sm)</span>;
+  gap: <span class="val">var(--space-4)</span>;  <span class="cm">/* 16px between buttons */</span>
+}
+<span class="sel">.header-icon-btn .badge</span> {
+  position: absolute; top: <span class="val">7px</span>; right: <span class="val">7px</span>;
+  width: <span class="val">8px</span>; height: <span class="val">8px</span>;
+  background: <span class="val">var(--color-primary)</span>; border-radius: <span class="val">50%</span>;
+}</div>
+</section>
+
+<!-- ═══════════════════════════════════════ LOCATION PILL -->
+<section id="location-pill">
+  <h2 class="section-title">Location Pill</h2>
+  <div class="comp-header">
+    <span class="comp-title">Frosted pill with dropdown</span>
+    <span class="comp-spec">24px height · below header at top:92px</span>
+  </div>
+  <div class="preview"><div class="preview-photo">
+    <button class="m-pill">
+      <span>Verbier</span>
+      <img src="/assets/icons/dropdown-arrow.svg" style="width:9px;height:8px" alt="">
+    </button>
+  </div></div>
+  <div class="code-block"><span class="sel">.location-pill</span> {
+  position: absolute; top: <span class="val">92px</span>; left: <span class="val">55px</span>;  <span class="cm">/* confirmed from Figma 125:3102 */</span>
+  height: <span class="val">24px</span>;  <span class="cm">/* 4px grid — Figma shows 22px, corrected */</span>
+  padding: <span class="val">0 8px 0 10px</span>;
+  background: <span class="val">var(--surface-blur)</span>;
+  backdrop-filter: <span class="val">var(--blur)</span>;
+  border-radius: <span class="val">var(--radius-md)</span>;  <span class="cm">/* 28px */</span>
+}
+<span class="cm">/* Trailing icon: dropdown-arrow.svg 9×8px, #E04700 */</span></div>
+</section>
+
+<!-- ═══════════════════════════════════════ PAGINATION -->
+<section id="pagination">
+  <h2 class="section-title">Pagination Dots</h2>
+  <div class="comp-header">
+    <span class="comp-title">7 stat screens, swipeable</span>
+    <span class="comp-spec">10px dots · 15px gap · active = #E04700</span>
+  </div>
+  <div class="preview"><div class="preview-photo" style="justify-content:center">
+    <div class="m-dot-row">
+      <div class="m-dot active"></div>
+      <div class="m-dot"></div>
+      <div class="m-dot"></div>
+      <div class="m-dot"></div>
+      <div class="m-dot"></div>
+      <div class="m-dot"></div>
+      <div class="m-dot"></div>
+    </div>
+  </div></div>
+  <div class="code-block"><span class="sel">.pagination-dot</span> {
+  width: <span class="val">10px</span>; height: <span class="val">10px</span>; border-radius: <span class="val">50%</span>;
+  background: <span class="val">rgba(213,244,252,0.35)</span>;
+}
+<span class="sel">.pagination-dot.active</span> { background: <span class="val">var(--color-primary)</span>; }</div>
+</section>
+
+<!-- ═══════════════════════════════════════ NOTIFICATIONS -->
+<section id="notifications">
+  <h2 class="section-title">Notifications</h2>
+  <p class="section-desc">Items grouped in frosted cards by date. Two icon types: teal (social) and orange (milestone/personal achievement). Unread state shown by orange dot only.</p>
+
+  <div class="preview"><div class="preview-photo" style="flex-direction:column;gap:4px;align-items:flex-start">
+    <div class="m-section-label">TODAY</div>
+    <div class="m-notif-group">
+      <div class="m-notif-item unread">
+        <div class="m-notif-icon milestone"><span class="iconify" data-icon="fluent:crown-24-filled"></span></div>
+        <div class="m-notif-text">
+          <div class="m-notif-title">Silver Crown Unlocked</div>
+          <div class="m-notif-body">You reached 500 season points!</div>
+        </div>
+        <div class="m-notif-meta">
+          <span class="m-notif-time">2m ago</span>
+          <div class="m-notif-dot"></div>
+        </div>
+      </div>
+      <div class="m-notif-item">
+        <div class="m-notif-icon"><span class="iconify" data-icon="fluent:people-24-filled"></span></div>
+        <div class="m-notif-text">
+          <div class="m-notif-title">Alex joined your group</div>
+          <div class="m-notif-body">Verbier crew · 4 members</div>
+        </div>
+        <div class="m-notif-meta">
+          <span class="m-notif-time">1h ago</span>
+        </div>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="code-block"><span class="cm">/* Icon type system */</span>
+<span class="sel">.notif-icon</span>           { background: <span class="val">var(--color-icon-bg)</span>; }  <span class="cm">/* teal — social/friend */</span>
+<span class="sel">.notif-icon.milestone</span> { background: <span class="val">var(--color-primary)</span>; }  <span class="cm">/* orange — achievements */</span>
+
+<span class="cm">/* Icon color: always #D5F4FC — never white */</span>
+<span class="sel">.notif-icon .iconify</span> { color: <span class="val">var(--color-text-on-dark)</span>; }
+
+<span class="cm">/* Unread: shown by orange dot only — not by icon bg colour */</span>
+<span class="sel">.notif-item.unread</span> { background: <span class="val">rgba(255,255,255,0.22)</span>; }
+<span class="sel">.notif-dot</span> { width: <span class="val">8px</span>; height: <span class="val">8px</span>; background: <span class="val">var(--color-primary)</span>; }</div>
+</section>
+
+<!-- ═══════════════════════════════════════ MISC -->
+<section id="misc">
+  <h2 class="section-title">Misc Components</h2>
+
+  <div class="subsection">
+    <div class="comp-header"><span class="comp-title">Checkbox</span><span class="comp-spec">24×24px · radius-sm</span></div>
+    <div class="preview"><div class="preview-dark" style="gap:16px">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div class="m-checkbox"></div>
+        <span style="font-size:12px;color:var(--doc-muted)">Unchecked</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div class="m-checkbox checked"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#D5F4FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span style="font-size:12px;color:var(--doc-muted)">Checked</span>
+      </div>
+    </div></div>
+    <div class="code-block"><span class="sel">.checkbox</span>         { border: <span class="val">3px solid var(--color-surface-muted)</span>; background: <span class="val">white</span>; }
+<span class="sel">.checkbox.checked</span>  { background: <span class="val">var(--color-primary)</span>; border-color: <span class="val">var(--color-primary)</span>; }</div>
+  </div>
+
+  <div class="subsection">
+    <div class="comp-header"><span class="comp-title">Section Date Label</span><span class="comp-spec">10px · Bold · uppercase · #D5F4FC</span></div>
+    <div class="preview"><div class="preview-photo" style="flex-direction:column;align-items:flex-start;gap:4px">
+      <div class="m-section-label">TODAY</div>
+      <div class="m-section-label">YESTERDAY</div>
+      <div class="m-section-label">THIS WEEK</div>
+    </div></div>
+    <div class="code-block"><span class="sel">.section-label</span> {
+  font-size: <span class="val">var(--fs-10)</span>; font-weight: <span class="val">var(--fw-bold)</span>;
+  letter-spacing: <span class="val">0.08em</span>; text-transform: <span class="val">uppercase</span>;
+  color: <span class="val">var(--color-text-on-dark)</span>;  <span class="cm">/* sits on dark photo bg */</span>
+  padding: <span class="val">var(--space-4) 0 var(--space-2)</span>;
+}</div>
+  </div>
+
+  <div class="subsection">
+    <div class="comp-header"><span class="comp-title">Bottom Strip (iOS Home Indicator)</span><span class="comp-spec">40px · frosted · not a tab bar</span></div>
+    <div class="preview"><div class="preview-photo" style="justify-content:center">
+      <div class="m-strip"><div class="m-home-ind"></div></div>
+    </div></div>
+    <div class="code-block"><span class="sel">.bottom-strip</span> {
+  height: <span class="val">40px</span>; border-radius: <span class="val">32px 32px 0 0</span>;
+  background: <span class="val">var(--surface-blur)</span>; backdrop-filter: <span class="val">var(--blur)</span>;
+}
+<span class="cm">/* Not a tab bar. Navigation lives in the header. */</span>
+<span class="sel">.home-indicator</span> { width: <span class="val">100px</span>; height: <span class="val">4px</span>; background: <span class="val">rgba(8,8,8,0.18)</span>; }</div>
+  </div>
+
+  <div class="subsection">
+    <div class="comp-header"><span class="comp-title">User Marker (Map)</span><span class="comp-spec">32×32px · orange ring · light inner</span></div>
+    <div class="preview"><div class="preview-photo" style="justify-content:center">
+      <div class="m-user-marker">
+        <div class="m-user-marker-inner">
+          <img src="/assets/icons/profile-avatar.png" alt="User">
+        </div>
+      </div>
+    </div></div>
+    <div class="code-block"><span class="sel">.user-marker</span> {
+  width: <span class="val">32px</span>; height: <span class="val">32px</span>; border-radius: <span class="val">var(--radius-lg)</span>;  <span class="cm">/* 48px */</span>
+  background: <span class="val">var(--color-primary)</span>;
+}
+<span class="sel">.user-marker-inner</span> {
+  width: <span class="val">20px</span>; height: <span class="val">20px</span>; border-radius: <span class="val">var(--radius-lg)</span>;
+  background: <span class="val">var(--color-surface)</span>;
+}
+<span class="sel">.user-marker-inner img</span> { mix-blend-mode: <span class="val">multiply</span>; }</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ ICONS -->
+<section id="icons">
+  <h2 class="section-title">Icon Library</h2>
+  <p class="section-desc">
+    <strong style="color:var(--doc-text)">Fluent UI Icons (filled)</strong> via Iconify CDN. Icons render at 20×20px. Color is always <code style="font-family:var(--mono);font-size:11px;color:var(--brand-primary)">#D5F4FC</code> — never white.
+  </p>
+
+  <div class="code-block" style="margin-bottom:24px"><span class="cm">/* CDN */</span>
+&lt;script src=<span class="val">"https://code.iconify.design/3/3.1.1/iconify.min.js"</span>&gt;&lt;/script&gt;
+
+<span class="cm">/* Usage */</span>
+&lt;span class=<span class="val">"iconify"</span> data-icon=<span class="val">"fluent:flash-24-filled"</span>&gt;&lt;/span&gt;
+
+<span class="cm">/* Style via CSS — color property controls fill */</span>
+<span class="sel">.iconify</span> { width: <span class="val">20px</span>; height: <span class="val">20px</span>; color: <span class="val">var(--color-text-on-dark)</span>; }</div>
+
+  <div class="subsection">
+    <div class="subsection-title">Teal bg — Social / Friend events</div>
+    <div class="icon-grid">
+      <div class="icon-cell">
+        <div class="icon-bubble teal"><span class="iconify" data-icon="fluent:people-24-filled"></span></div>
+        <span class="icon-name">fluent:people<br>-24-filled</span>
+      </div>
+      <div class="icon-cell">
+        <div class="icon-bubble teal"><span class="iconify" data-icon="fluent:chat-24-filled"></span></div>
+        <span class="icon-name">fluent:chat<br>-24-filled</span>
+      </div>
+      <div class="icon-cell">
+        <div class="icon-bubble teal"><span class="iconify" data-icon="fluent:calendar-24-filled"></span></div>
+        <span class="icon-name">fluent:calendar<br>-24-filled</span>
+      </div>
+      <div class="icon-cell">
+        <div class="icon-bubble teal"><span class="iconify" data-icon="fluent:weather-snowflake-24-filled"></span></div>
+        <span class="icon-name">fluent:weather-snowflake<br>-24-filled</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Orange bg — Personal achievements (milestone)</div>
+    <div class="icon-grid">
+      <div class="icon-cell">
+        <div class="icon-bubble orange"><span class="iconify" data-icon="fluent:crown-24-filled"></span></div>
+        <span class="icon-name">fluent:crown<br>-24-filled</span>
+      </div>
+      <div class="icon-cell">
+        <div class="icon-bubble orange"><span class="iconify" data-icon="fluent:fire-24-filled"></span></div>
+        <span class="icon-name">fluent:fire<br>-24-filled</span>
+      </div>
+      <div class="icon-cell">
+        <div class="icon-bubble orange"><span class="iconify" data-icon="fluent:flash-24-filled"></span></div>
+        <span class="icon-name">fluent:flash<br>-24-filled</span>
+      </div>
+      <div class="icon-cell">
+        <div class="icon-bubble orange"><span class="iconify" data-icon="fluent:trophy-24-filled"></span></div>
+        <span class="icon-name">fluent:trophy<br>-24-filled</span>
+      </div>
+      <div class="icon-cell">
+        <div class="icon-bubble orange"><span class="iconify" data-icon="fluent:star-24-filled"></span></div>
+        <span class="icon-name">fluent:star<br>-24-filled</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Scoring screen icons (teal bg with built-in SVG backgrounds)</div>
+    <div class="icon-grid">
+      <div class="icon-cell">
+        <div style="width:40px;height:40px"><img src="/assets/icons/scoring-speed.svg" style="width:40px;height:40px" alt="Speed"></div>
+        <span class="icon-name">scoring-speed.svg<br>40×40 (self-contained)</span>
+      </div>
+      <div class="icon-cell">
+        <div style="width:40px;height:40px"><img src="/assets/icons/scoring-resort.svg" style="width:40px;height:40px" alt="Resort"></div>
+        <span class="icon-name">scoring-resort.svg<br>40×40 (self-contained)</span>
+      </div>
+      <div class="icon-cell">
+        <div style="width:40px;height:40px"><img src="/assets/icons/scoring-runs.svg" style="width:40px;height:40px" alt="Runs"></div>
+        <span class="icon-name">scoring-runs.svg<br>40×40 (self-contained)</span>
+      </div>
+      <div class="icon-cell">
+        <div style="width:40px;height:40px"><img src="/assets/icons/scoring-time.svg" style="width:40px;height:40px" alt="Time"></div>
+        <span class="icon-name">scoring-time.svg<br>40×40 (self-contained)</span>
+      </div>
+      <div class="icon-cell">
+        <div class="m-icon-btn"><img src="/assets/icons/scoring-days.svg" style="width:22px;height:22px" alt="Days"></div>
+        <span class="icon-name">scoring-days.svg<br>22×22 (needs wrapper)</span>
+      </div>
+      <div class="icon-cell">
+        <div class="m-icon-btn"><img src="/assets/icons/scoring-piste.svg" style="width:22px;height:22px" alt="Piste"></div>
+        <span class="icon-name">scoring-piste.svg<br>22×22 (needs wrapper)</span>
+      </div>
+    </div>
+      <div class="icon-cell">
+        <div style="width:40px;height:40px"><img src="/assets/icons/scoring-time.svg" style="width:40px;height:40px" alt="Time"></div>
+        <span class="icon-name">scoring-time.svg<br>40×40 (self-contained)</span>
+      </div>
+      <div class="icon-cell">
+        <div class="m-icon-btn"><img src="/assets/icons/scoring-season.png" style="width:22px;height:22px" alt="Season"></div>
+        <span class="icon-name">scoring-season.png<br>22×22 (needs wrapper)</span>
+      </div>
+    </div>
+    <p style="font-size:11px;color:var(--doc-muted);margin-top:12px">⚠ scoring-speed, resort, runs, time are 40×40 with the teal bg built into the SVG — use directly as <code style="font-family:var(--mono);">&lt;img&gt;</code>. scoring-days, scoring-piste, scoring-season need a <code style="font-family:var(--mono);">.icon-btn</code> wrapper.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ ASSETS -->
+<section id="assets">
+  <h2 class="section-title">Assets</h2>
+  <p class="section-desc">All assets live in <code style="font-family:var(--mono);font-size:11px;color:var(--brand-primary)">/assets/</code>. Figma-sourced SVGs require the intrinsic dimension fix before use as <code style="font-family:var(--mono);font-size:11px;color:var(--brand-primary)">&lt;img&gt;</code> elements.</p>
+
+  <div class="subsection">
+    <div class="subsection-title">Logos</div>
+    <div class="asset-grid">
+      <div class="asset-card">
+        <div class="asset-preview" style="background:#111"><img src="/assets/logo/mountains-logo.svg" alt="logo"></div>
+        <div class="asset-info"><span class="asset-path">/assets/logo/mountains-logo.svg</span><span class="asset-desc">Light lockup (on dark)</span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview" style="background:#D5F4FC"><img src="/assets/logo/mountains-logo-dark.svg" alt="logo dark"></div>
+        <div class="asset-info"><span class="asset-path">/assets/logo/mountains-logo-dark.svg</span><span class="asset-desc">Dark lockup (on light)</span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview"><img src="/assets/logo/mountains-icon.svg" alt="icon"></div>
+        <div class="asset-info"><span class="asset-path">/assets/logo/mountains-icon.svg</span><span class="asset-desc">Icon only · 48×48px</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Backgrounds</div>
+    <p style="font-size:11px;color:var(--doc-muted);margin-bottom:16px;line-height:1.6">Reference via root-relative paths: <code style="font-family:var(--mono);color:var(--brand-primary)">/assets/images/...</code> — works on localhost and GitHub Pages.</p>
+    <div class="asset-grid">
+      <div class="asset-card">
+        <div class="asset-preview" style="padding:0;overflow:hidden"><img src="/assets/images/bg-map.jpg" style="width:100%;height:80px;object-fit:cover" alt="bg-map"></div>
+        <div class="asset-info"><span class="asset-path">/assets/images/bg-map.jpg</span><span class="asset-desc">Map screen background</span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview" style="padding:0;overflow:hidden"><img src="/assets/images/bg-signup.jpg" style="width:100%;height:80px;object-fit:cover" alt="bg-signup"></div>
+        <div class="asset-info"><span class="asset-path">/assets/images/bg-signup.jpg</span><span class="asset-desc">Sign up background</span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview" style="padding:0;overflow:hidden"><img src="/assets/images/bg-top-speed.png" style="width:100%;height:80px;object-fit:cover" alt="bg-speed"></div>
+        <div class="asset-info"><span class="asset-path">/assets/images/bg-top-speed.png</span><span class="asset-desc">Top Speed / stat screens · <span style="color:#f5c400">⚠ 9.6MB</span></span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview" style="padding:0;overflow:hidden"><img src="/assets/images/bg-profile.jpg" style="width:100%;height:80px;object-fit:cover" alt="bg-profile"></div>
+        <div class="asset-info"><span class="asset-path">/assets/images/bg-profile.jpg</span><span class="asset-desc">Profile screen background</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">SVG Intrinsic Dimension Fix</div>
+    <p style="font-size:12px;color:var(--doc-muted);line-height:1.7;margin-bottom:12px">All Figma-exported SVGs arrive with <code style="font-family:var(--mono)">width="100%"</code> and <code style="font-family:var(--mono)">preserveAspectRatio="none"</code>. Fix before using as <code style="font-family:var(--mono)">&lt;img&gt;</code>:</p>
+    <div class="code-block"><span class="cm">&lt;!-- Before (broken) --&gt;</span>
+&lt;svg <span class="val">width="100%"</span> <span class="val">height="100%"</span> <span class="val">preserveAspectRatio="none"</span> viewBox="0 0 40 40"&gt;
+
+<span class="cm">&lt;!-- After (fixed) --&gt;</span>
+&lt;svg <span class="val">width="40"</span> <span class="val">height="40"</span> <span class="val">preserveAspectRatio="xMidYMid meet"</span> viewBox="0 0 40 40"&gt;</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ SCREENS -->
+<section id="screens">
+  <h2 class="section-title">Screens</h2>
+  <p class="section-desc">All built screens live in <code style="font-family:var(--mono);font-size:11px;color:var(--brand-primary)">/docs/</code>. Open each in the preview server at <code style="font-family:var(--mono);font-size:11px;color:var(--brand-primary)">localhost:4321</code>.</p>
+
+  <div class="screen-grid">
+    <a href="/docs/screen-signup.html" class="screen-card">
+      <div class="screen-name">Sign Up <span class="screen-badge stable">Stable</span></div>
+      <span class="screen-node">node: 124:1791</span>
+      <span class="screen-desc">Background photo + frosted card. Email, password, social login, T&amp;C checkbox.</span>
+    </a>
+    <a href="/docs/screen-power-saving.html" class="screen-card">
+      <div class="screen-name">Power Saving Warning <span class="screen-badge stable">Stable</span></div>
+      <span class="screen-node">node: 124:1671</span>
+      <span class="screen-desc">Map View + centered modal overlay with compass and close button.</span>
+    </a>
+    <a href="/docs/screen-top-speed.html" class="screen-card">
+      <div class="screen-name">Top Speed <span class="screen-badge stable">Stable</span></div>
+      <span class="screen-node">node: 125:2082</span>
+      <span class="screen-desc">Stat detail — 74.0 km/h. Pagination dot 1 of 7. View + Close buttons.</span>
+    </a>
+    <a href="/docs/screen-scoring.html" class="screen-card">
+      <div class="screen-name">Scoring System <span class="screen-badge stable">Stable</span></div>
+      <span class="screen-node">node: 125:2500</span>
+      <span class="screen-desc">Season score card with scrollable stat rows and scroll shadow.</span>
+    </a>
+    <a href="/docs/screen-crowns.html" class="screen-card">
+      <div class="screen-name">Crowns Hub <span class="screen-badge stable">Stable</span></div>
+      <span class="screen-node">node: 125:2607</span>
+      <span class="screen-desc">Medal tiers (Bronze/Silver/Gold), points distribution, progress bars.</span>
+    </a>
+    <a href="/docs/screen-profile.html" class="screen-card">
+      <div class="screen-name">Profile <span class="screen-badge stable">Stable</span></div>
+      <span class="screen-node">node: 178:1942</span>
+      <span class="screen-desc">Bottom sheet with avatar, name, badges, bio, stat strip, and CTA.</span>
+    </a>
+    <a href="/docs/screen-notifications.html" class="screen-card">
+      <div class="screen-name">Notifications <span class="screen-badge stable">Stable</span></div>
+      <span class="screen-node">—</span>
+      <span class="screen-desc">Grouped notification feed with unread states, social and milestone icon types.</span>
+    </a>
+  </div>
+
+  <div style="margin-top:16px;font-size:11px;color:var(--doc-muted);line-height:1.7">
+    <strong style="color:var(--doc-text)">Not yet built:</strong> Map View (124:1563), Stat Details 2–7 (125:2125–2344), Lifetime Riding Card (125:2388).
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ RULES -->
+<section id="rules">
+  <h2 class="section-title">Rules</h2>
+  <p class="section-desc">Non-negotiable constraints from design.md.</p>
+
+  <ul class="rule-list">
+    <li class="rule-item">
+      <span class="rule-em">4px grid.</span> Every spacing, sizing, and positioning value must be a multiple of 4. No 6px, 10px padding, no 22px height (correct to 24px), no 46px height (off-grid — flag it).
+    </li>
+    <li class="rule-item">
+      <span class="rule-em">No opacity text on dark backgrounds.</span> Text on photo backgrounds uses <code style="font-family:var(--mono)">#D5F4FC</code> (primary) or <code style="font-family:var(--mono)">#BBE2EC</code> (secondary) as solid tokens — never invented rgba values like <code style="font-family:var(--mono);color:#f5c400">rgba(213,244,252,0.55)</code>.
+    </li>
+    <li class="rule-item">
+      <span class="rule-em">No tab bar.</span> The app has no bottom navigation tab bar. All navigation lives in the 3 header icon buttons (Friends, Chat, Avatar), consistent across every screen.
+    </li>
+    <li class="rule-item">
+      <span class="rule-em">Type scale rule.</span> Only sizes in the scale exist: 38, 20, 18, 17, 16, 12, 10px. Sizes like 11, 13, 14, 15px are not valid in this system.
+    </li>
+    <li class="rule-item">
+      <span class="rule-em">Icon color.</span> Fluent UI icons are always <code style="font-family:var(--mono)">#D5F4FC</code> (light blue) — never white (<code style="font-family:var(--mono)">#ffffff</code>).
+    </li>
+    <li class="rule-item warn">
+      <span class="rule-em">Figma asset URLs expire in 7 days.</span> Download and host assets locally before building. Use <code style="font-family:var(--mono)">curl -sLk {url} -o file.ext</code> then check type with <code style="font-family:var(--mono)">file</code> command — many arrive as SVG despite a .png extension.
+    </li>
+    <li class="rule-item warn">
+      <span class="rule-em">Button size system unresolved.</span> Current screens have at least 3 inconsistent heights (40, 44, 46px). Flag instances and standardise before production.
+    </li>
+  </ul>
+</section>
+
+</main>
+
+<script>
+// ── Copy to clipboard ──
+function copyText(text, label) {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Copied: ' + text);
+  });
+}
+
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2000);
+}
+
+// ── Token chips: copy on click ──
+document.querySelectorAll('.token-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const val = chip.dataset.copy || chip.textContent.trim();
+    copyText(val, val);
+  });
+});
+
+// ── Active nav on scroll ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

@@ -1,0 +1,645 @@
+/**
+ * Mountains Design System — Components
+ * Shared component styles for all screen mockups.
+ * Import after tokens.css.
+ * 4px grid rule applies to all values.
+ */
+
+/* ─────────────────────────────────────────────────────────
+ * RESET
+ * ───────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * CANVAS  (page that holds the device frame)
+ * ───────────────────────────────────────────────────────── */
+
+.mountains-canvas {
+  min-height: 100vh;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font);
+  padding: 48px 20px 56px;
+  gap: 16px;
+}
+
+.page-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  font-family: monospace;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * DEVICE SHELL
+ * ───────────────────────────────────────────────────────── */
+
+.device {
+  width: var(--screen-w);
+  height: var(--screen-h);
+  border-radius: 52px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08) inset,
+    0 0 0 10px #1c1c1e,
+    0 0 0 11px rgba(255,255,255,0.08),
+    0 48px 96px rgba(0,0,0,0.7);
+}
+
+.screen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #080808;
+  font-family: var(--font);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * BACKGROUND
+ * ───────────────────────────────────────────────────────── */
+
+.bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center top;
+}
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.60)  0%,
+    rgba(0,0,0,0.15) 28%,
+    rgba(8,8,8,0.88) 100%
+  );
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * STATUS BAR
+ * ───────────────────────────────────────────────────────── */
+
+.status-bar {
+  position: relative;
+  z-index: 10;
+  height: 44px;
+  padding: 13px 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.status-time {
+  font-size: 15px;
+  font-weight: var(--fw-bold);
+  color: var(--color-surface);
+  letter-spacing: -0.2px;
+}
+
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * HEADER
+ * ───────────────────────────────────────────────────────── */
+
+.header {
+  position: relative;
+  z-index: 10;
+  height: var(--header-h);
+  padding: 0 var(--screen-padding-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-logo {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * HEADER NAV ICONS  (right side, 3 buttons)
+ * ───────────────────────────────────────────────────────── */
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);   /* 16px */
+}
+
+.header-icon-btn {
+  width: 40px;
+  height: 40px;
+  background: var(--surface-blur);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: var(--radius-sm);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.header-icon-btn img.icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Orange dot badge (e.g. chat activity) */
+.header-icon-btn .badge {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  border: 1.5px solid var(--surface-blur);
+}
+
+/* Avatar button (user photo) */
+.header-icon-btn.avatar {
+  padding: 0;
+  overflow: hidden;
+}
+.header-icon-btn.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  display: block;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * LOCATION PILL
+ * ───────────────────────────────────────────────────────── */
+
+.location-pill {
+  position: absolute;
+  top: 92px;           /* below 44px status + 56px header = 100px top, Figma: 92px */
+  left: 55px;          /* Figma: left 55px */
+  z-index: 11;
+  height: 24px;
+  padding: 0 8px 0 10px;
+  background: var(--surface-blur);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: var(--radius-md);   /* 28px */
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font);
+}
+
+.location-pill span {
+  font-size: var(--fs-12);   /* label-sm */
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.location-pill img {
+  width: 9px;
+  height: 8px;
+  flex-shrink: 0;
+  display: block;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * BOTTOM STRIP  (iOS home indicator — not a nav bar)
+ * ───────────────────────────────────────────────────────── */
+
+.bottom-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--bottom-strip-h);   /* 40px */
+  background: var(--surface-blur);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: 32px 32px 0 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-indicator {
+  width: 100px;
+  height: 4px;
+  background: rgba(8,8,8,0.18);
+  border-radius: 2px;
+  margin-top: 8px;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * BUTTONS
+ * ───────────────────────────────────────────────────────── */
+
+/* Primary full-width (Sign Up, Log In) */
+.btn-primary {
+  height: 40px;
+  width: 312px;
+  background: var(--color-text);           /* #080808 */
+  color: var(--color-text-on-dark);        /* #D5F4FC */
+  font-family: var(--font);
+  font-size: var(--fs-16);                 /* cta-lg */
+  font-weight: var(--fw-bold);
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Primary inline (View button inside stat rows) */
+.btn-view {
+  height: 40px;
+  width: 90px;
+  background: var(--color-text);
+  color: var(--color-text-on-dark);
+  font-family: var(--font);
+  font-size: var(--fs-17);                 /* cta-md — TODO: standardise to 16px */
+  font-weight: var(--fw-bold);
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Secondary / Close */
+.btn-close {
+  height: 48px;
+  width: 194px;
+  background: var(--color-surface);       /* #D5F4FC */
+  color: var(--color-text);               /* #080808 */
+  font-family: var(--font);
+  font-size: var(--fs-17);               /* cta-md — TODO: standardise */
+  font-weight: var(--fw-bold);
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Social login pair (Sign Up screen) */
+.btn-social {
+  height: 44px;
+  width: 148px;
+  background: var(--color-surface-muted);
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * INPUT FIELD
+ * ───────────────────────────────────────────────────────── */
+
+.input-field {
+  height: 40px;
+  width: 312px;
+  background: var(--color-surface-muted);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: var(--radius-sm);
+  border: none;
+  padding: 0 var(--space-3);
+  font-family: var(--font);
+  font-size: var(--fs-16);
+  font-weight: var(--fw-regular);
+  color: var(--color-text);
+}
+
+.input-field::placeholder {
+  color: var(--color-text-muted);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * ICON BUTTON  (stat rows, map controls)
+ * ───────────────────────────────────────────────────────── */
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  background: var(--color-icon-bg);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
+}
+
+/* Map control variant (frosted) */
+.icon-btn-map {
+  width: 40px;
+  height: 40px;
+  background: var(--surface-blur);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * STAT ROW
+ * ───────────────────────────────────────────────────────── */
+
+.stat-row {
+  width: 313px;
+  height: 64px;
+  background: var(--color-surface-muted);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-3);
+}
+
+.stat-row + .stat-row {
+  margin-top: var(--space-2);   /* 8px gap */
+}
+
+.stat-row-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.stat-row-label {
+  font-size: var(--fs-10);   /* label-xs */
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: var(--lh-body);
+}
+
+.stat-row-value {
+  font-size: var(--fs-18);   /* display-lg */
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  line-height: var(--lh-body);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * STAT HERO CARD
+ * ───────────────────────────────────────────────────────── */
+
+.stat-hero {
+  width: 194px;
+  height: 84px;
+  background: var(--color-primary);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.stat-hero-value {
+  font-size: var(--fs-38);   /* display-xl */
+  font-weight: var(--fw-bold);
+  color: var(--color-text-on-dark);
+  line-height: 1.25;
+}
+
+.stat-hero-unit {
+  font-size: var(--fs-18);   /* display-lg */
+  font-weight: var(--fw-bold);
+  color: var(--color-text-on-dark);
+  line-height: var(--lh-body);
+}
+
+.stat-hero-label {
+  font-size: var(--fs-12);   /* label-sm — 15px in Figma, TODO */
+  font-weight: var(--fw-bold);
+  color: var(--color-text-on-dark);
+  line-height: var(--lh-body);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * PAGINATION DOTS
+ * ───────────────────────────────────────────────────────── */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 15px;  /* 25px center-to-center with 10px dots = 15px gap */
+}
+
+.pagination-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(213,244,252,0.35);
+  flex-shrink: 0;
+}
+
+.pagination-dot.active {
+  background: var(--color-primary);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * NOTIFICATION GROUP CARD
+ * ───────────────────────────────────────────────────────── */
+
+.notif-group {
+  background: rgba(213,244,252,0.88);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: var(--space-1);   /* 4px gap between groups */
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * NOTIFICATION ITEM
+ * ───────────────────────────────────────────────────────── */
+
+.notif-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3);   /* 12px */
+  gap: var(--space-3);
+  position: relative;
+}
+
+.notif-item + .notif-item {
+  border-top: 1px solid rgba(8,8,8,0.07);
+}
+
+.notif-item.unread {
+  background: rgba(255,255,255,0.22);
+}
+
+.notif-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--color-icon-bg);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/*
+ * Icon type system:
+ *   .notif-icon            → teal (#4E93AD)  — social / friend events
+ *   .notif-icon.milestone  → orange (#E04700) — personal achievements (streak, crown, PB)
+ * Unread state is signalled by the orange dot (.notif-dot) only.
+ */
+.notif-icon.milestone {
+  background: var(--color-primary);
+}
+
+.notif-icon svg,
+.notif-icon .iconify {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-on-dark);   /* #D5F4FC — always light blue, never white */
+  flex-shrink: 0;
+}
+
+.notif-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.notif-title {
+  font-size: var(--fs-12);   /* label-sm */
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  line-height: var(--lh-body);
+  margin-bottom: 3px;
+}
+
+.notif-body {
+  font-size: var(--fs-12);   /* body-sm */
+  font-weight: var(--fw-regular);
+  color: var(--color-text);
+  line-height: var(--lh-body);
+}
+
+.notif-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.notif-time {
+  font-size: var(--fs-10);   /* caption */
+  font-weight: var(--fw-regular);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.notif-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * SECTION DATE LABEL
+ * ───────────────────────────────────────────────────────── */
+
+.section-label {
+  font-size: var(--fs-10);   /* label-xs */
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-on-dark);   /* #D5F4FC — on dark photo bg */
+  padding: var(--space-4) 0 var(--space-2);   /* 16px top, 8px bottom */
+}
+
+
+/* ─────────────────────────────────────────────────────────
+ * CHECKBOX
+ * ───────────────────────────────────────────────────────── */
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  border: 3px solid var(--color-surface-muted);
+  background: white;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox.checked {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
