@@ -84,7 +84,7 @@ section{margin-bottom:80px}
 }
 .preview-dark{background:#1a1a1a;padding:32px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
 .preview-photo{
-  background:url('/assets/images/bg-top-speed.png') center/cover;
+  background:url('../assets/images/bg-top-speed.png') center/cover;
   padding:32px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;
 }
 .preview-light{background:var(--brand-surface);padding:32px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
@@ -342,7 +342,7 @@ hr.divider{border:none;border-top:1px solid var(--doc-border);margin:40px 0}
 <!-- SIDEBAR -->
 <nav class="sidebar">
   <div class="sidebar-logo">
-    <img src="/assets/logo/mountains-logo.svg" alt="Mountains">
+    <img src="../assets/logo/mountains-logo.svg" alt="Mountains">
     <span class="version">Design System v1.0</span>
   </div>
 
@@ -392,23 +392,23 @@ hr.divider{border:none;border-top:1px solid var(--doc-border);margin:40px 0}
     <div class="preview">
       <div style="background:#111;padding:32px;display:flex;gap:32px;align-items:center;flex-wrap:wrap">
         <div>
-          <img src="/assets/logo/mountains-logo.svg" style="height:28px;display:block" alt="Mountains logo">
+          <img src="../assets/logo/mountains-logo.svg" style="height:28px;display:block" alt="Mountains logo">
           <p style="font-size:10px;color:var(--doc-muted);margin-top:8px;font-family:var(--mono)">mountains-logo.svg · on dark</p>
         </div>
         <div style="background:var(--brand-surface);padding:16px 24px;border-radius:8px">
-          <img src="/assets/logo/mountains-logo-dark.svg" style="height:28px;display:block" alt="Mountains logo dark">
+          <img src="../assets/logo/mountains-logo-dark.svg" style="height:28px;display:block" alt="Mountains logo dark">
           <p style="font-size:10px;color:rgba(8,8,8,0.4);margin-top:8px;font-family:var(--mono)">mountains-logo-dark.svg · on light</p>
         </div>
         <div>
-          <img src="/assets/logo/mountains-icon.svg" style="height:48px;display:block" alt="Mountains icon">
+          <img src="../assets/logo/mountains-icon.svg" style="height:48px;display:block" alt="Mountains icon">
           <p style="font-size:10px;color:var(--doc-muted);margin-top:8px;font-family:var(--mono)">mountains-icon.svg · 48×48</p>
         </div>
       </div>
     </div>
     <div class="code-block"><span class="cm">/* Logo paths */</span>
-/assets/logo/mountains-logo.svg      <span class="cm">← light wordmark (on dark bg)</span>
-/assets/logo/mountains-logo-dark.svg <span class="cm">← dark wordmark (on light bg)</span>
-/assets/logo/mountains-icon.svg      <span class="cm">← icon only, 48×48px</span></div>
+../assets/logo/mountains-logo.svg      <span class="cm">← light wordmark (on dark bg)</span>
+../assets/logo/mountains-logo-dark.svg <span class="cm">← dark wordmark (on light bg)</span>
+../assets/logo/mountains-icon.svg      <span class="cm">← icon only, 48×48px</span></div>
   </div>
 
   <div class="subsection">
@@ -721,11 +721,11 @@ background: <span class="val">linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0
     </div>
     <div class="preview"><div class="preview-dark">
       <button class="m-btn-social">
-        <img src="/assets/icons/google-logo.svg" style="height:18px" alt="Google">
+        <img src="../assets/icons/google-logo.svg" style="height:18px" alt="Google">
         Google
       </button>
       <button class="m-btn-social">
-        <img src="/assets/icons/apple-logo.svg" style="height:18px" alt="Apple">
+        <img src="../assets/icons/apple-logo.svg" style="height:18px" alt="Apple">
         Apple
       </button>
     </div></div>
@@ -863,9 +863,9 @@ background: <span class="val">linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0
       <span class="comp-spec">40×40px · frosted glass</span>
     </div>
     <div class="preview"><div class="preview-photo" style="gap:8px">
-      <div class="m-icon-btn-map"><img src="/assets/icons/profile-map-1.svg" style="width:40px;height:40px" alt=""></div>
-      <div class="m-icon-btn-map"><img src="/assets/icons/profile-map-2.svg" style="width:40px;height:40px" alt=""></div>
-      <div class="m-icon-btn-map" style="width:40px;height:40px"><img src="/assets/icons/profile-map-3.svg" style="width:20px;height:20px" alt=""></div>
+      <div class="m-icon-btn-map"><img src="../assets/icons/profile-map-1.svg" style="width:40px;height:40px" alt=""></div>
+      <div class="m-icon-btn-map"><img src="../assets/icons/profile-map-2.svg" style="width:40px;height:40px" alt=""></div>
+      <div class="m-icon-btn-map" style="width:40px;height:40px"><img src="../assets/icons/profile-map-3.svg" style="width:20px;height:20px" alt=""></div>
     </div></div>
     <div class="code-block"><span class="sel">.icon-btn-map</span> {
   width: <span class="val">40px</span>; height: <span class="val">40px</span>;
@@ -882,13 +882,13 @@ background: <span class="val">linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0
   <p class="section-desc">3 frosted icon buttons in every screen header — Friends, Chat (with badge), Avatar. No tab bar — all navigation lives here.</p>
   <div class="preview"><div class="preview-photo">
     <div class="m-header-icons">
-      <div class="m-header-icon"><img src="/assets/icons/profile.svg" style="width:18px;height:18px" alt="Friends"></div>
+      <div class="m-header-icon"><img src="../assets/icons/profile.svg" style="width:18px;height:18px" alt="Friends"></div>
       <div class="m-header-icon" style="position:relative">
-        <img src="/assets/icons/chat.svg" style="width:18px;height:18px" alt="Chat">
+        <img src="../assets/icons/chat.svg" style="width:18px;height:18px" alt="Chat">
         <div class="badge"></div>
       </div>
       <div class="m-header-icon" style="overflow:hidden;padding:0">
-        <img src="/assets/icons/profile-avatar.png" style="width:40px;height:40px;object-fit:cover;mix-blend-mode:multiply" alt="Avatar">
+        <img src="../assets/icons/profile-avatar.png" style="width:40px;height:40px;object-fit:cover;mix-blend-mode:multiply" alt="Avatar">
       </div>
     </div>
   </div></div>
@@ -920,7 +920,7 @@ background: <span class="val">linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0
   <div class="preview"><div class="preview-photo">
     <button class="m-pill">
       <span>Verbier</span>
-      <img src="/assets/icons/dropdown-arrow.svg" style="width:9px;height:8px" alt="">
+      <img src="../assets/icons/dropdown-arrow.svg" style="width:9px;height:8px" alt="">
     </button>
   </div></div>
   <div class="code-block"><span class="sel">.location-pill</span> {
@@ -1056,7 +1056,7 @@ background: <span class="val">linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0
     <div class="preview"><div class="preview-photo" style="justify-content:center">
       <div class="m-user-marker">
         <div class="m-user-marker-inner">
-          <img src="/assets/icons/profile-avatar.png" alt="User">
+          <img src="../assets/icons/profile-avatar.png" alt="User">
         </div>
       </div>
     </div></div>
@@ -1140,36 +1140,36 @@ background: <span class="val">linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0
     <div class="subsection-title">Scoring screen icons (teal bg with built-in SVG backgrounds)</div>
     <div class="icon-grid">
       <div class="icon-cell">
-        <div style="width:40px;height:40px"><img src="/assets/icons/scoring-speed.svg" style="width:40px;height:40px" alt="Speed"></div>
+        <div style="width:40px;height:40px"><img src="../assets/icons/scoring-speed.svg" style="width:40px;height:40px" alt="Speed"></div>
         <span class="icon-name">scoring-speed.svg<br>40×40 (self-contained)</span>
       </div>
       <div class="icon-cell">
-        <div style="width:40px;height:40px"><img src="/assets/icons/scoring-resort.svg" style="width:40px;height:40px" alt="Resort"></div>
+        <div style="width:40px;height:40px"><img src="../assets/icons/scoring-resort.svg" style="width:40px;height:40px" alt="Resort"></div>
         <span class="icon-name">scoring-resort.svg<br>40×40 (self-contained)</span>
       </div>
       <div class="icon-cell">
-        <div style="width:40px;height:40px"><img src="/assets/icons/scoring-runs.svg" style="width:40px;height:40px" alt="Runs"></div>
+        <div style="width:40px;height:40px"><img src="../assets/icons/scoring-runs.svg" style="width:40px;height:40px" alt="Runs"></div>
         <span class="icon-name">scoring-runs.svg<br>40×40 (self-contained)</span>
       </div>
       <div class="icon-cell">
-        <div style="width:40px;height:40px"><img src="/assets/icons/scoring-time.svg" style="width:40px;height:40px" alt="Time"></div>
+        <div style="width:40px;height:40px"><img src="../assets/icons/scoring-time.svg" style="width:40px;height:40px" alt="Time"></div>
         <span class="icon-name">scoring-time.svg<br>40×40 (self-contained)</span>
       </div>
       <div class="icon-cell">
-        <div class="m-icon-btn"><img src="/assets/icons/scoring-days.svg" style="width:22px;height:22px" alt="Days"></div>
+        <div class="m-icon-btn"><img src="../assets/icons/scoring-days.svg" style="width:22px;height:22px" alt="Days"></div>
         <span class="icon-name">scoring-days.svg<br>22×22 (needs wrapper)</span>
       </div>
       <div class="icon-cell">
-        <div class="m-icon-btn"><img src="/assets/icons/scoring-piste.svg" style="width:22px;height:22px" alt="Piste"></div>
+        <div class="m-icon-btn"><img src="../assets/icons/scoring-piste.svg" style="width:22px;height:22px" alt="Piste"></div>
         <span class="icon-name">scoring-piste.svg<br>22×22 (needs wrapper)</span>
       </div>
     </div>
       <div class="icon-cell">
-        <div style="width:40px;height:40px"><img src="/assets/icons/scoring-time.svg" style="width:40px;height:40px" alt="Time"></div>
+        <div style="width:40px;height:40px"><img src="../assets/icons/scoring-time.svg" style="width:40px;height:40px" alt="Time"></div>
         <span class="icon-name">scoring-time.svg<br>40×40 (self-contained)</span>
       </div>
       <div class="icon-cell">
-        <div class="m-icon-btn"><img src="/assets/icons/scoring-season.png" style="width:22px;height:22px" alt="Season"></div>
+        <div class="m-icon-btn"><img src="../assets/icons/scoring-season.png" style="width:22px;height:22px" alt="Season"></div>
         <span class="icon-name">scoring-season.png<br>22×22 (needs wrapper)</span>
       </div>
     </div>
@@ -1180,45 +1180,45 @@ background: <span class="val">linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0
 <!-- ═══════════════════════════════════════ ASSETS -->
 <section id="assets">
   <h2 class="section-title">Assets</h2>
-  <p class="section-desc">All assets live in <code style="font-family:var(--mono);font-size:11px;color:var(--brand-primary)">/assets/</code>. Figma-sourced SVGs require the intrinsic dimension fix before use as <code style="font-family:var(--mono);font-size:11px;color:var(--brand-primary)">&lt;img&gt;</code> elements.</p>
+  <p class="section-desc">All assets live in <code style="font-family:var(--mono);font-size:11px;color:var(--brand-primary)">../assets/</code>. Figma-sourced SVGs require the intrinsic dimension fix before use as <code style="font-family:var(--mono);font-size:11px;color:var(--brand-primary)">&lt;img&gt;</code> elements.</p>
 
   <div class="subsection">
     <div class="subsection-title">Logos</div>
     <div class="asset-grid">
       <div class="asset-card">
-        <div class="asset-preview" style="background:#111"><img src="/assets/logo/mountains-logo.svg" alt="logo"></div>
-        <div class="asset-info"><span class="asset-path">/assets/logo/mountains-logo.svg</span><span class="asset-desc">Light lockup (on dark)</span></div>
+        <div class="asset-preview" style="background:#111"><img src="../assets/logo/mountains-logo.svg" alt="logo"></div>
+        <div class="asset-info"><span class="asset-path">../assets/logo/mountains-logo.svg</span><span class="asset-desc">Light lockup (on dark)</span></div>
       </div>
       <div class="asset-card">
-        <div class="asset-preview" style="background:#D5F4FC"><img src="/assets/logo/mountains-logo-dark.svg" alt="logo dark"></div>
-        <div class="asset-info"><span class="asset-path">/assets/logo/mountains-logo-dark.svg</span><span class="asset-desc">Dark lockup (on light)</span></div>
+        <div class="asset-preview" style="background:#D5F4FC"><img src="../assets/logo/mountains-logo-dark.svg" alt="logo dark"></div>
+        <div class="asset-info"><span class="asset-path">../assets/logo/mountains-logo-dark.svg</span><span class="asset-desc">Dark lockup (on light)</span></div>
       </div>
       <div class="asset-card">
-        <div class="asset-preview"><img src="/assets/logo/mountains-icon.svg" alt="icon"></div>
-        <div class="asset-info"><span class="asset-path">/assets/logo/mountains-icon.svg</span><span class="asset-desc">Icon only · 48×48px</span></div>
+        <div class="asset-preview"><img src="../assets/logo/mountains-icon.svg" alt="icon"></div>
+        <div class="asset-info"><span class="asset-path">../assets/logo/mountains-icon.svg</span><span class="asset-desc">Icon only · 48×48px</span></div>
       </div>
     </div>
   </div>
 
   <div class="subsection">
     <div class="subsection-title">Backgrounds</div>
-    <p style="font-size:11px;color:var(--doc-muted);margin-bottom:16px;line-height:1.6">Reference via root-relative paths: <code style="font-family:var(--mono);color:var(--brand-primary)">/assets/images/...</code> — works on localhost and GitHub Pages.</p>
+    <p style="font-size:11px;color:var(--doc-muted);margin-bottom:16px;line-height:1.6">Reference via root-relative paths: <code style="font-family:var(--mono);color:var(--brand-primary)">../assets/images/...</code> — works on localhost and GitHub Pages.</p>
     <div class="asset-grid">
       <div class="asset-card">
-        <div class="asset-preview" style="padding:0;overflow:hidden"><img src="/assets/images/bg-map.jpg" style="width:100%;height:80px;object-fit:cover" alt="bg-map"></div>
-        <div class="asset-info"><span class="asset-path">/assets/images/bg-map.jpg</span><span class="asset-desc">Map screen background</span></div>
+        <div class="asset-preview" style="padding:0;overflow:hidden"><img src="../assets/images/bg-map.jpg" style="width:100%;height:80px;object-fit:cover" alt="bg-map"></div>
+        <div class="asset-info"><span class="asset-path">../assets/images/bg-map.jpg</span><span class="asset-desc">Map screen background</span></div>
       </div>
       <div class="asset-card">
-        <div class="asset-preview" style="padding:0;overflow:hidden"><img src="/assets/images/bg-signup.jpg" style="width:100%;height:80px;object-fit:cover" alt="bg-signup"></div>
-        <div class="asset-info"><span class="asset-path">/assets/images/bg-signup.jpg</span><span class="asset-desc">Sign up background</span></div>
+        <div class="asset-preview" style="padding:0;overflow:hidden"><img src="../assets/images/bg-signup.jpg" style="width:100%;height:80px;object-fit:cover" alt="bg-signup"></div>
+        <div class="asset-info"><span class="asset-path">../assets/images/bg-signup.jpg</span><span class="asset-desc">Sign up background</span></div>
       </div>
       <div class="asset-card">
-        <div class="asset-preview" style="padding:0;overflow:hidden"><img src="/assets/images/bg-top-speed.png" style="width:100%;height:80px;object-fit:cover" alt="bg-speed"></div>
-        <div class="asset-info"><span class="asset-path">/assets/images/bg-top-speed.png</span><span class="asset-desc">Top Speed / stat screens · <span style="color:#f5c400">⚠ 9.6MB</span></span></div>
+        <div class="asset-preview" style="padding:0;overflow:hidden"><img src="../assets/images/bg-top-speed.png" style="width:100%;height:80px;object-fit:cover" alt="bg-speed"></div>
+        <div class="asset-info"><span class="asset-path">../assets/images/bg-top-speed.png</span><span class="asset-desc">Top Speed / stat screens · <span style="color:#f5c400">⚠ 9.6MB</span></span></div>
       </div>
       <div class="asset-card">
-        <div class="asset-preview" style="padding:0;overflow:hidden"><img src="/assets/images/bg-profile.jpg" style="width:100%;height:80px;object-fit:cover" alt="bg-profile"></div>
-        <div class="asset-info"><span class="asset-path">/assets/images/bg-profile.jpg</span><span class="asset-desc">Profile screen background</span></div>
+        <div class="asset-preview" style="padding:0;overflow:hidden"><img src="../assets/images/bg-profile.jpg" style="width:100%;height:80px;object-fit:cover" alt="bg-profile"></div>
+        <div class="asset-info"><span class="asset-path">../assets/images/bg-profile.jpg</span><span class="asset-desc">Profile screen background</span></div>
       </div>
     </div>
   </div>
