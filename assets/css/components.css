@@ -297,7 +297,7 @@
   background: var(--color-text);
   color: var(--color-text-on-dark);
   font-family: var(--font);
-  font-size: var(--fs-17);                 /* cta-md — TODO: standardise to 16px */
+  font-size: var(--fs-16);
   font-weight: var(--fw-bold);
   border-radius: var(--radius-sm);
   border: none;
@@ -315,7 +315,7 @@
   background: var(--color-surface);       /* #D5F4FC */
   color: var(--color-text);               /* #080808 */
   font-family: var(--font);
-  font-size: var(--fs-17);
+  font-size: var(--fs-16);
   font-weight: var(--fw-bold);
   border-radius: var(--radius-sm);
   border: none;

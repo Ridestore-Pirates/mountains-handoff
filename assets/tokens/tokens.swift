@@ -41,7 +41,7 @@ struct AppTypography {
     static let bodySm    = AppTypography(size: 12, weight: .regular, lineHeight: 1.25)
     static let labelSm   = AppTypography(size: 12, weight: .bold,    lineHeight: 1.0)
     static let labelXs   = AppTypography(size: 10, weight: .bold,    lineHeight: 1.25)
-    static let ctaMd     = AppTypography(size: 17, weight: .bold,    lineHeight: 1.25)
+    static let ctaMd     = AppTypography(size: 16, weight: .bold,    lineHeight: 1.25)
     static let ctaLg     = AppTypography(size: 16, weight: .bold,    lineHeight: 1.25)
     static let legalSm   = AppTypography(size: 12, weight: .regular, lineHeight: 1.6)
     static let caption   = AppTypography(size: 10, weight: .regular, lineHeight: 1.25)

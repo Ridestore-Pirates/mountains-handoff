@@ -52,8 +52,7 @@
   --fs-38:  38px;   /* display-xl  */
   --fs-20:  20px;   /* heading-lg  */
   --fs-18:  18px;   /* display-lg / heading-md */
-  --fs-16:  16px;   /* body-md / cta-lg */
-  --fs-17:  17px;   /* cta-md (needs standardising — see TODO) */
+  --fs-16:  16px;   /* body-md / cta-md / cta-lg */
   --fs-12:  12px;   /* body-sm / label-sm / legal-sm */
   --fs-10:  10px;   /* label-xs / caption */
 
@@ -83,7 +82,7 @@
   --body-sm-size:      var(--fs-12);  --body-sm-weight:    var(--fw-regular);  --body-sm-lh:   var(--lh-body);
   --label-sm-size:     var(--fs-12);  --label-sm-weight:   var(--fw-bold);    --label-sm-lh:  var(--lh-tight);
   --label-xs-size:     var(--fs-10);  --label-xs-weight:   var(--fw-bold);    --label-xs-lh:  var(--lh-body);
-  --cta-md-size:       var(--fs-17);  --cta-md-weight:     var(--fw-bold);    --cta-md-lh:    var(--lh-body);
+  --cta-md-size:       var(--fs-16);  --cta-md-weight:     var(--fw-bold);    --cta-md-lh:    var(--lh-body);
   --cta-lg-size:       var(--fs-16);  --cta-lg-weight:     var(--fw-bold);    --cta-lg-lh:    var(--lh-body);
   --legal-sm-size:     var(--fs-12);  --legal-sm-weight:   var(--fw-regular);  --legal-sm-lh:  var(--lh-legal);
   --caption-size:      var(--fs-10);  --caption-weight:    var(--fw-regular);  --caption-lh:   var(--lh-body);
