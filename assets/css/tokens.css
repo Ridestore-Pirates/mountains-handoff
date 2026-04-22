@@ -66,6 +66,28 @@
   --fw-regular: 400;
   --fw-bold:    700;
 
+  /* Semantic typography roles (from design.md)
+   * Use these when applying a role, not raw --fs-* vars.
+   * Each role maps to: size / weight / line-height
+   * ─────────────────────────────────────────────────
+   * CSS var name          ← design.md name
+   * --color-text          ← color-text-primary
+   * --color-text-muted    ← color-text-secondary
+   * All other color vars match design.md names exactly.
+   * ───────────────────────────────────────── */
+  --display-xl-size:   var(--fs-38);  --display-xl-weight: var(--fw-bold);    --display-xl-lh: var(--lh-body);
+  --display-lg-size:   var(--fs-18);  --display-lg-weight: var(--fw-bold);    --display-lg-lh: var(--lh-body);
+  --heading-lg-size:   var(--fs-20);  --heading-lg-weight: var(--fw-bold);    --heading-lg-lh: var(--lh-body);
+  --heading-md-size:   var(--fs-18);  --heading-md-weight: var(--fw-bold);    --heading-md-lh: var(--lh-body);
+  --body-md-size:      var(--fs-16);  --body-md-weight:    var(--fw-regular);  --body-md-lh:   var(--lh-body);
+  --body-sm-size:      var(--fs-12);  --body-sm-weight:    var(--fw-regular);  --body-sm-lh:   var(--lh-body);
+  --label-sm-size:     var(--fs-12);  --label-sm-weight:   var(--fw-bold);    --label-sm-lh:  var(--lh-tight);
+  --label-xs-size:     var(--fs-10);  --label-xs-weight:   var(--fw-bold);    --label-xs-lh:  var(--lh-body);
+  --cta-md-size:       var(--fs-17);  --cta-md-weight:     var(--fw-bold);    --cta-md-lh:    var(--lh-body);
+  --cta-lg-size:       var(--fs-16);  --cta-lg-weight:     var(--fw-bold);    --cta-lg-lh:    var(--lh-body);
+  --legal-sm-size:     var(--fs-12);  --legal-sm-weight:   var(--fw-regular);  --legal-sm-lh:  var(--lh-legal);
+  --caption-size:      var(--fs-10);  --caption-weight:    var(--fw-regular);  --caption-lh:   var(--lh-body);
+
 
   /* ─────────────────────────────────────────
    * BORDER RADIUS
