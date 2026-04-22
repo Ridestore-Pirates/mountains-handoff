@@ -342,12 +342,18 @@ hr.divider{border:none;border-top:1px solid var(--doc-border);margin:40px 0}
 <!-- SIDEBAR -->
 <nav class="sidebar">
   <div class="sidebar-logo">
-    <img src="../assets/logo/mountains-logo.svg" alt="Mountains">
+    <a href="../index.html" style="display:block;line-height:0;margin-bottom:8px;">
+      <img src="../assets/logo/mountains-logo.svg" alt="Mountains">
+    </a>
     <span class="version">Design System v1.0</span>
   </div>
 
   <div class="nav-group">
-    <div class="nav-group-label">Foundation</div>
+    <a href="../index.html" class="nav-link" style="display:flex;align-items:center;gap:6px;">
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="flex-shrink:0;opacity:.6"><path d="M1 5.5L5.5 1 10 5.5M2 4.6V10h2.5V7.5h2V10H9V4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Home
+    </a>
+    <div class="nav-group-label" style="margin-top:12px;">Foundation</div>
     <a href="#brand" class="nav-link">Brand</a>
     <a href="#colors" class="nav-link">Colors</a>
     <a href="#typography" class="nav-link">Typography</a>
