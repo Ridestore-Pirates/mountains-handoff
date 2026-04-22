@@ -310,12 +310,12 @@
 
 /* Secondary / Close */
 .btn-close {
-  height: 48px;
+  height: 44px;
   width: 194px;
   background: var(--color-surface);       /* #D5F4FC */
   color: var(--color-text);               /* #080808 */
   font-family: var(--font);
-  font-size: var(--fs-17);               /* cta-md — TODO: standardise */
+  font-size: var(--fs-17);
   font-weight: var(--fw-bold);
   border-radius: var(--radius-sm);
   border: none;

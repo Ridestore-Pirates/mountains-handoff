@@ -185,7 +185,7 @@ section{margin-bottom:80px}
 .icon-bubble.teal{background:#4E93AD}
 .icon-bubble.orange{background:#E04700}
 .icon-bubble .iconify{width:20px;height:20px;color:#D5F4FC}
-.icon-name{font-family:var(--mono);font-size:9px;color:var(--doc-muted);text-align:center;line-height:1.4}
+.icon-name{font-family:var(--mono);font-size:9px;color:var(--doc-muted);text-align:center;line-height:1.4;word-break:break-all}
 
 /* ── ASSET GRID ── */
 .asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
@@ -349,7 +349,7 @@ hr.divider{border:none;border-top:1px solid var(--doc-border);margin:40px 0}
   </div>
 
   <div class="nav-group">
-    <a href="../index.html" class="nav-link" style="display:flex;align-items:center;gap:6px;">
+    <a href="../index.html" class="nav-link" aria-label="Home" style="display:flex;align-items:center;gap:6px;">
       <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="flex-shrink:0;opacity:.6"><path d="M1 5.5L5.5 1 10 5.5M2 4.6V10h2.5V7.5h2V10H9V4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Home
     </a>
@@ -702,18 +702,18 @@ background: <span class="val">linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0
   height: <span class="val">40px</span>; width: <span class="val">90px</span>;
   background: <span class="val">var(--color-text)</span>;
   color: <span class="val">var(--color-text-on-dark)</span>;
-  font-size: <span class="val">var(--fs-17)</span>;  <span class="cm">/* TODO: standardise to --fs-16 */</span>
+  font-size: <span class="val">var(--fs-17)</span>;
 }</div>
   </div>
 
   <div class="subsection">
     <div class="comp-header">
       <span class="comp-title">Secondary — Close</span>
-      <span class="comp-spec">194×46px · #D5F4FC · 17px Bold</span>
+      <span class="comp-spec">194×44px · #D5F4FC · 17px Bold</span>
     </div>
     <div class="preview"><div class="preview-photo"><button class="m-btn-close">Close</button></div></div>
     <div class="code-block"><span class="sel">.btn-close</span> {
-  height: <span class="val">46px</span>; width: <span class="val">194px</span>;  <span class="cm">/* TODO: 46px is off 4px grid */</span>
+  height: <span class="val">44px</span>; width: <span class="val">194px</span>;
   background: <span class="val">var(--color-surface)</span>;  <span class="cm">/* #D5F4FC */</span>
   color: <span class="val">var(--color-text)</span>;
   font-size: <span class="val">var(--fs-17)</span>;
@@ -1099,19 +1099,19 @@ background: <span class="val">linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0
     <div class="icon-grid">
       <div class="icon-cell">
         <div class="icon-bubble teal"><span class="iconify" data-icon="fluent:people-24-filled"></span></div>
-        <span class="icon-name">fluent:people<br>-24-filled</span>
+        <span class="icon-name">fluent:people-24-filled</span>
       </div>
       <div class="icon-cell">
         <div class="icon-bubble teal"><span class="iconify" data-icon="fluent:chat-24-filled"></span></div>
-        <span class="icon-name">fluent:chat<br>-24-filled</span>
+        <span class="icon-name">fluent:chat-24-filled</span>
       </div>
       <div class="icon-cell">
         <div class="icon-bubble teal"><span class="iconify" data-icon="fluent:calendar-24-filled"></span></div>
-        <span class="icon-name">fluent:calendar<br>-24-filled</span>
+        <span class="icon-name">fluent:calendar-24-filled</span>
       </div>
       <div class="icon-cell">
         <div class="icon-bubble teal"><span class="iconify" data-icon="fluent:weather-snowflake-24-filled"></span></div>
-        <span class="icon-name">fluent:weather-snowflake<br>-24-filled</span>
+        <span class="icon-name">fluent:weather-snowflake-24-filled</span>
       </div>
     </div>
   </div>
@@ -1121,23 +1121,23 @@ background: <span class="val">linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0
     <div class="icon-grid">
       <div class="icon-cell">
         <div class="icon-bubble orange"><span class="iconify" data-icon="fluent:crown-24-filled"></span></div>
-        <span class="icon-name">fluent:crown<br>-24-filled</span>
+        <span class="icon-name">fluent:crown-24-filled</span>
       </div>
       <div class="icon-cell">
         <div class="icon-bubble orange"><span class="iconify" data-icon="fluent:fire-24-filled"></span></div>
-        <span class="icon-name">fluent:fire<br>-24-filled</span>
+        <span class="icon-name">fluent:fire-24-filled</span>
       </div>
       <div class="icon-cell">
         <div class="icon-bubble orange"><span class="iconify" data-icon="fluent:flash-24-filled"></span></div>
-        <span class="icon-name">fluent:flash<br>-24-filled</span>
+        <span class="icon-name">fluent:flash-24-filled</span>
       </div>
       <div class="icon-cell">
         <div class="icon-bubble orange"><span class="iconify" data-icon="fluent:trophy-24-filled"></span></div>
-        <span class="icon-name">fluent:trophy<br>-24-filled</span>
+        <span class="icon-name">fluent:trophy-24-filled</span>
       </div>
       <div class="icon-cell">
         <div class="icon-bubble orange"><span class="iconify" data-icon="fluent:star-24-filled"></span></div>
-        <span class="icon-name">fluent:star<br>-24-filled</span>
+        <span class="icon-name">fluent:star-24-filled</span>
       </div>
     </div>
   </div>
@@ -1147,36 +1147,31 @@ background: <span class="val">linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0
     <div class="icon-grid">
       <div class="icon-cell">
         <div style="width:40px;height:40px"><img src="../assets/icons/scoring-speed.svg" style="width:40px;height:40px" alt="Speed"></div>
-        <span class="icon-name">scoring-speed.svg<br>40×40 (self-contained)</span>
+        <span class="icon-name">scoring-speed.svg 40×40 (self-contained)</span>
       </div>
       <div class="icon-cell">
         <div style="width:40px;height:40px"><img src="../assets/icons/scoring-resort.svg" style="width:40px;height:40px" alt="Resort"></div>
-        <span class="icon-name">scoring-resort.svg<br>40×40 (self-contained)</span>
+        <span class="icon-name">scoring-resort.svg 40×40 (self-contained)</span>
       </div>
       <div class="icon-cell">
         <div style="width:40px;height:40px"><img src="../assets/icons/scoring-runs.svg" style="width:40px;height:40px" alt="Runs"></div>
-        <span class="icon-name">scoring-runs.svg<br>40×40 (self-contained)</span>
+        <span class="icon-name">scoring-runs.svg 40×40 (self-contained)</span>
       </div>
       <div class="icon-cell">
         <div style="width:40px;height:40px"><img src="../assets/icons/scoring-time.svg" style="width:40px;height:40px" alt="Time"></div>
-        <span class="icon-name">scoring-time.svg<br>40×40 (self-contained)</span>
+        <span class="icon-name">scoring-time.svg 40×40 (self-contained)</span>
       </div>
       <div class="icon-cell">
         <div class="m-icon-btn"><img src="../assets/icons/scoring-days.svg" style="width:22px;height:22px" alt="Days"></div>
-        <span class="icon-name">scoring-days.svg<br>22×22 (needs wrapper)</span>
+        <span class="icon-name">scoring-days.svg 22×22 (needs wrapper)</span>
       </div>
       <div class="icon-cell">
         <div class="m-icon-btn"><img src="../assets/icons/scoring-piste.svg" style="width:22px;height:22px" alt="Piste"></div>
-        <span class="icon-name">scoring-piste.svg<br>22×22 (needs wrapper)</span>
-      </div>
-    </div>
-      <div class="icon-cell">
-        <div style="width:40px;height:40px"><img src="../assets/icons/scoring-time.svg" style="width:40px;height:40px" alt="Time"></div>
-        <span class="icon-name">scoring-time.svg<br>40×40 (self-contained)</span>
+        <span class="icon-name">scoring-piste.svg 22×22 (needs wrapper)</span>
       </div>
       <div class="icon-cell">
         <div class="m-icon-btn"><img src="../assets/icons/scoring-season.png" style="width:22px;height:22px" alt="Season"></div>
-        <span class="icon-name">scoring-season.png<br>22×22 (needs wrapper)</span>
+        <span class="icon-name">scoring-season.png 22×22 (needs wrapper)</span>
       </div>
     </div>
     <p style="font-size:11px;color:var(--doc-muted);margin-top:12px">⚠ scoring-speed, resort, runs, time are 40×40 with the teal bg built into the SVG — use directly as <code style="font-family:var(--mono);">&lt;img&gt;</code>. scoring-days, scoring-piste, scoring-season need a <code style="font-family:var(--mono);">.icon-btn</code> wrapper.</p>
@@ -1312,8 +1307,8 @@ background: <span class="val">linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0
     <li class="rule-item warn">
       <span class="rule-em">Figma asset URLs expire in 7 days.</span> Download and host assets locally before building. Use <code style="font-family:var(--mono)">curl -sLk {url} -o file.ext</code> then check type with <code style="font-family:var(--mono)">file</code> command — many arrive as SVG despite a .png extension.
     </li>
-    <li class="rule-item warn">
-      <span class="rule-em">Button size system unresolved.</span> Current screens have at least 3 inconsistent heights (40, 44, 46px). Flag instances and standardise before production.
+    <li class="rule-item">
+      <span class="rule-em">Button heights.</span> Full-width action buttons are 44px. Inline compact buttons (View) are 40px. Both are on the 4px grid.
     </li>
   </ul>
 </section>
