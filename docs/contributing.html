@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mountains — Contributing</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --brand-primary:#E04700;
+  --brand-surface:#D5F4FC;
+  --brand-teal:#4E93AD;
+  --doc-bg:#0c0c0c;
+  --doc-sidebar:#111;
+  --doc-card:#1a1a1a;
+  --doc-card2:#222;
+  --doc-border:rgba(255,255,255,0.07);
+  --doc-text:#f0f0f0;
+  --doc-muted:rgba(240,240,240,0.45);
+  --font:'Archivo Expanded',sans-serif;
+  --mono:'SF Mono','Fira Code','JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--doc-bg);color:var(--doc-text);display:flex;min-height:100vh;line-height:1.5}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:220px;flex-shrink:0;background:var(--doc-sidebar);
+  border-right:1px solid var(--doc-border);
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+  display:flex;flex-direction:column;padding:28px 0 40px;
+  scrollbar-width:none;
+}
+.sidebar::-webkit-scrollbar{display:none}
+.sidebar-logo{padding:0 20px 28px;border-bottom:1px solid var(--doc-border)}
+.sidebar-logo img{height:20px;width:auto;display:block}
+.sidebar-logo .version{font-size:10px;color:var(--doc-muted);margin-top:6px;font-family:var(--mono)}
+.nav-group{margin-top:20px}
+.nav-group-label{
+  font-size:8px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(240,240,240,0.25);padding:0 20px 8px;
+}
+.nav-link{
+  display:block;font-size:12px;font-weight:700;color:var(--doc-muted);
+  padding:7px 20px;text-decoration:none;border-left:2px solid transparent;
+  transition:color 0.15s,border-color 0.15s;
+}
+.nav-link:hover{color:var(--doc-text)}
+.nav-link.active{color:var(--brand-primary);border-left-color:var(--brand-primary)}
+
+/* ── MAIN ── */
+main{flex:1;min-width:0;padding:60px 56px 120px;max-width:900px}
+
+/* ── SECTION ── */
+section{margin-bottom:72px;scroll-margin-top:32px}
+.section-title{
+  font-size:28px;font-weight:700;color:var(--doc-text);
+  margin-bottom:8px;padding-bottom:16px;
+  border-bottom:1px solid var(--doc-border);
+}
+.section-desc{font-size:13px;color:var(--doc-muted);margin-bottom:32px;line-height:1.7;max-width:600px}
+
+/* ── STEP LIST ── */
+.step-list{display:flex;flex-direction:column;gap:12px}
+.step{
+  display:flex;gap:16px;align-items:flex-start;
+  background:var(--doc-card);border:1px solid var(--doc-border);
+  border-radius:8px;padding:20px;
+}
+.step-num{
+  font-size:11px;font-weight:700;color:var(--brand-primary);
+  background:rgba(224,71,0,0.12);border-radius:4px;
+  padding:3px 8px;flex-shrink:0;font-family:var(--mono);margin-top:1px;
+}
+.step-body{flex:1}
+.step-title{font-size:13px;font-weight:700;color:var(--doc-text);margin-bottom:6px}
+.step-desc{font-size:12px;color:var(--doc-muted);line-height:1.7}
+
+/* ── CODE BLOCK ── */
+.code-block{
+  background:#0d1117;border:1px solid var(--doc-border);
+  border-radius:6px;padding:14px 16px;font-family:var(--mono);
+  font-size:11px;color:#a5b4c3;line-height:1.7;overflow-x:auto;
+  margin-top:12px;
+}
+.code-block .cm{color:#8b949e}
+.code-block .val{color:#e3b341}
+
+/* ── PROMPT BOX ── */
+.prompt-box{
+  background:#0d1117;border:1px solid rgba(224,71,0,0.3);
+  border-radius:8px;padding:20px;margin-top:16px;
+}
+.prompt-label{
+  font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--brand-primary);margin-bottom:10px;
+}
+.prompt-text{
+  font-family:var(--mono);font-size:11px;color:#d0e0e8;
+  line-height:1.8;white-space:pre-wrap;
+}
+.prompt-highlight{color:var(--brand-primary);}
+
+/* ── CHECKLIST ── */
+.checklist{display:flex;flex-direction:column;gap:8px}
+.check-item{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--doc-card);border:1px solid var(--doc-border);
+  border-radius:8px;padding:14px 16px;
+  font-size:12px;color:var(--doc-muted);line-height:1.6;
+}
+.check-item.rule{border-left:2px solid var(--brand-primary);}
+.check-box{
+  width:16px;height:16px;border-radius:4px;border:1.5px solid rgba(255,255,255,0.2);
+  flex-shrink:0;margin-top:1px;
+}
+.check-text strong{color:var(--doc-text);display:block;margin-bottom:2px}
+
+/* ── CALLOUT ── */
+.callout{
+  display:flex;gap:14px;align-items:flex-start;
+  background:rgba(78,147,173,0.08);border:1px solid rgba(78,147,173,0.2);
+  border-radius:8px;padding:16px 20px;margin-top:16px;
+}
+.callout-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.callout-body{font-size:12px;color:var(--doc-muted);line-height:1.7}
+.callout-body strong{color:var(--doc-text)}
+
+/* ── BRANCH TAG ── */
+.branch{
+  display:inline-block;font-family:var(--mono);font-size:11px;
+  background:rgba(78,147,173,0.1);color:var(--brand-teal);
+  border:1px solid rgba(78,147,173,0.25);border-radius:4px;
+  padding:2px 8px;
+}
+
+/* ── PILL TAG ── */
+.tag{
+  display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.08em;
+  text-transform:uppercase;padding:2px 7px;border-radius:4px;
+  background:rgba(224,71,0,0.15);color:var(--brand-primary);
+}
+
+/* ── PAGE HEADER ── */
+.page-header{margin-bottom:56px;padding-bottom:32px;border-bottom:1px solid var(--doc-border)}
+.page-eyebrow{
+  font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--brand-teal);margin-bottom:12px;
+}
+.page-title{font-size:36px;font-weight:700;color:var(--doc-text);line-height:1.15;margin-bottom:12px}
+.page-desc{font-size:13px;color:var(--doc-muted);line-height:1.7;max-width:540px}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <a href="../index.html" style="display:block;line-height:0;margin-bottom:8px;">
+      <img src="../assets/logo/mountains-logo.svg" alt="Mountains">
+    </a>
+    <span class="version">Contributing Guide</span>
+  </div>
+
+  <div class="nav-group">
+    <a href="../index.html" class="nav-link" aria-label="Home" style="display:flex;align-items:center;gap:6px;">
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="flex-shrink:0;opacity:.6"><path d="M1 5.5L5.5 1 10 5.5M2 4.6V10h2.5V7.5h2V10H9V4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Home
+    </a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Guide</div>
+    <a href="#getting-started" class="nav-link active">Getting Started</a>
+    <a href="#understanding" class="nav-link">Understanding the System</a>
+    <a href="#generating" class="nav-link">Generating a Screen</a>
+    <a href="#branching" class="nav-link">Branching Rules</a>
+    <a href="#checklist" class="nav-link">Before You Merge</a>
+    <a href="#review" class="nav-link">Flagging for Review</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Reference</div>
+    <a href="design-system.html" class="nav-link">Design System</a>
+    <a href="design.md" class="nav-link" target="_blank" rel="noopener">design.md</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <div class="page-header">
+    <p class="page-eyebrow">Mountains App</p>
+    <h1 class="page-title">Contributing</h1>
+    <p class="page-desc">How to generate new screens and contribute to the Mountains design system using Claude Code. You don't need deep technical experience — just follow the steps.</p>
+  </div>
+
+  <!-- GETTING STARTED -->
+  <section id="getting-started">
+    <h2 class="section-title">Getting Started</h2>
+    <p class="section-desc">Clone the repo and get it running locally in two steps.</p>
+
+    <div class="step-list">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div class="step-body">
+          <p class="step-title">Clone the repo</p>
+          <div class="code-block">git clone https://github.com/Ridestore-Pirates/mountains-handoff.git
+cd mountains-handoff</div>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div class="step-body">
+          <p class="step-title">Run locally</p>
+          <p class="step-desc">No install needed — requires Node.js. Serve from the project root so all asset paths resolve correctly.</p>
+          <div class="code-block">npx serve . -p 4321</div>
+          <p class="step-desc" style="margin-top:10px">Open <span style="font-family:var(--mono);color:var(--brand-primary);font-size:11px">http://localhost:4321</span> — you'll land on the handoff index.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNDERSTANDING THE SYSTEM -->
+  <section id="understanding">
+    <h2 class="section-title">Understanding the System</h2>
+    <p class="section-desc">Before generating anything, get familiar with three things.</p>
+
+    <div class="step-list">
+      <div class="step">
+        <span class="step-num" style="background:rgba(78,147,173,0.12);color:var(--brand-teal)">01</span>
+        <div class="step-body">
+          <p class="step-title">docs/design.md — the single source of truth</p>
+          <p class="step-desc">Every color, font size, spacing value, and design rule lives here. Claude reads this file when generating screens. If something isn't in design.md, it shouldn't be in the output.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num" style="background:rgba(78,147,173,0.12);color:var(--brand-teal)">02</span>
+        <div class="step-body">
+          <p class="step-title">The deployed URL — the visual reference</p>
+          <p class="step-desc">Keep the live handoff site open alongside Figma when reviewing generated screens. The goal is pixel accuracy against what's deployed.</p>
+          <div class="code-block"><span class="val">https://ridestore-pirates.github.io/mountains-handoff/</span></div>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num" style="background:rgba(78,147,173,0.12);color:var(--brand-teal)">03</span>
+        <div class="step-body">
+          <p class="step-title">assets/tokens/ — importable token files</p>
+          <p class="step-desc">If you're building in React, React Native, or SwiftUI, start here — not by copying values manually from Figma. The files are ready to import.</p>
+          <div class="code-block"><span class="cm"># JavaScript / React</span>
+import { tokens } from './assets/tokens/tokens.js'
+
+<span class="cm"># Swift / SwiftUI</span>
+Color.appPrimary
+AppTypography.displayXl
+AppSpacing.space4</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GENERATING A SCREEN -->
+  <section id="generating">
+    <h2 class="section-title">Generating a New Screen</h2>
+    <p class="section-desc">Open Claude Code in the project folder and use the prompt below as your starting point. Replace the bracketed part with the screen you're building.</p>
+
+    <div class="prompt-box">
+      <p class="prompt-label">Starting prompt — copy and adapt</p>
+      <p class="prompt-text">Read docs/design.md and review the existing screens in docs/ to understand the design system. Then generate a new screen for <span class="prompt-highlight">[screen name]</span> following the same tokens, grid, components and visual style. Output as a single HTML/CSS file in docs/.</p>
+    </div>
+
+    <div class="callout" style="margin-top:24px">
+      <span class="callout-icon">💡</span>
+      <div class="callout-body">
+        <strong>Tips for better output</strong><br>
+        If the screen has a Figma node ID, include it: <em>"the Figma node is 125:2082"</em>.<br>
+        If it uses a background photo, mention the asset: <em>"use assets/images/bg-top-speed.png"</em>.<br>
+        If Claude invents a color or spacing value not in the system, ask it to correct to the nearest token.
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:12px;background:rgba(224,71,0,0.06);border-color:rgba(224,71,0,0.2)">
+      <span class="callout-icon">🔁</span>
+      <div class="callout-body">
+        <strong>Iterate in plain English</strong><br>
+        After Claude generates the file, open it in the browser and compare to Figma. If anything looks off, describe the issue in plain English and ask Claude to fix it. You don't need to edit the code yourself.
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANCHING -->
+  <section id="branching">
+    <h2 class="section-title">Branching Rules</h2>
+    <p class="section-desc">Always work on a dedicated branch. Never commit directly to <span class="branch">main</span>.</p>
+
+    <div class="code-block">git checkout -b feature/screen-{name}</div>
+
+    <div style="margin-top:20px;display:flex;flex-direction:column;gap:8px">
+      <div class="step" style="padding:14px 16px">
+        <div class="step-body">
+          <p class="step-desc">New screen → <span class="branch">feature/screen-lifetime-card</span></p>
+        </div>
+      </div>
+      <div class="step" style="padding:14px 16px">
+        <div class="step-body">
+          <p class="step-desc">Token change → <span class="branch">feature/tokens-radius-update</span></p>
+        </div>
+      </div>
+      <div class="step" style="padding:14px 16px">
+        <div class="step-body">
+          <p class="step-desc">Small fix → <span class="branch">fix/profile-avatar-radius</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <span class="callout-icon">⚡</span>
+      <div class="callout-body">
+        <strong>main is always deployable.</strong> It's what's live at the public URL. Only merge when a screen is signed off and the checklist below is complete.
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section id="checklist">
+    <h2 class="section-title">Before You Merge</h2>
+    <p class="section-desc">Go through this before opening a pull request. Every item needs a tick.</p>
+
+    <div class="checklist">
+      <div class="check-item rule">
+        <div class="check-box"></div>
+        <div class="check-text">
+          <strong>4px grid</strong>
+          Every spacing and sizing value is a multiple of 4px. No 6px padding, no 22px heights, no 46px buttons.
+        </div>
+      </div>
+      <div class="check-item rule">
+        <div class="check-box"></div>
+        <div class="check-text">
+          <strong>Token names only</strong>
+          All colors use CSS variables from <span style="font-family:var(--mono);font-size:10px;color:var(--brand-primary)">assets/css/tokens.css</span>. No invented hex values or raw rgba on dark backgrounds.
+        </div>
+      </div>
+      <div class="check-item rule">
+        <div class="check-box"></div>
+        <div class="check-text">
+          <strong>Correct viewport</strong>
+          The screen renders correctly at 393×852px (iPhone 14 Pro).
+        </div>
+      </div>
+      <div class="check-item rule">
+        <div class="check-box"></div>
+        <div class="check-text">
+          <strong>Text on dark backgrounds</strong>
+          Uses <span style="font-family:var(--mono);font-size:10px;color:var(--brand-primary)">#D5F4FC</span> or <span style="font-family:var(--mono);font-size:10px;color:var(--brand-primary)">#BBE2EC</span> — never white.
+        </div>
+      </div>
+      <div class="check-item rule">
+        <div class="check-box"></div>
+        <div class="check-text">
+          <strong>No bottom tab bar</strong>
+          The app has no bottom navigation. All nav lives in the 3 header icon buttons.
+        </div>
+      </div>
+      <div class="check-item rule">
+        <div class="check-box"></div>
+        <div class="check-text">
+          <strong>Correct file location and name</strong>
+          Saved in <span style="font-family:var(--mono);font-size:10px;color:var(--brand-primary)">docs/</span> and follows the <span style="font-family:var(--mono);font-size:10px;color:var(--brand-primary)">screen-{name}.html</span> naming pattern.
+        </div>
+      </div>
+      <div class="check-item rule">
+        <div class="check-box"></div>
+        <div class="check-text">
+          <strong>Screen inventory updated</strong>
+          The new screen is listed in the Screens table in <span style="font-family:var(--mono);font-size:10px;color:var(--brand-primary)">docs/design-system.html</span> and <span style="font-family:var(--mono);font-size:10px;color:var(--brand-primary)">index.html</span>.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLAGGING FOR REVIEW -->
+  <section id="review">
+    <h2 class="section-title">Flagging for Review</h2>
+    <p class="section-desc">Open a pull request on GitHub and tag <strong style="color:var(--doc-text)">Winner</strong> for review. Don't merge until it's signed off.</p>
+
+    <div class="step-list">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div class="step-body">
+          <p class="step-title">Push your branch</p>
+          <div class="code-block">git push -u origin feature/screen-{name}</div>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div class="step-body">
+          <p class="step-title">Open a pull request</p>
+          <p class="step-desc">Go to the repo on GitHub and open a PR from your branch into <span class="branch">main</span>. A good PR description includes:</p>
+          <div style="margin-top:10px;display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--doc-muted);line-height:1.6">
+            <p>→ Which Figma node or screen this corresponds to</p>
+            <p>→ A screenshot or browser preview of the output</p>
+            <p>→ Any known issues or decisions you made during generation</p>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div class="step-body">
+          <p class="step-title">Tag Winner for review</p>
+          <p class="step-desc">If something doesn't match Figma exactly, note it in the PR — that's useful signal for improving the prompt or the design.md source. Don't try to hide it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const links = document.querySelectorAll('.nav-link[href^="#"]');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
